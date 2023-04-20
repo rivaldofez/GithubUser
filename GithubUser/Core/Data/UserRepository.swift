@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 
 protocol UserRepositoryProtocol {
-    func getSearchUser(query: String) -> Observable<[User]>
+    func getListSearchUser(query: String) -> Observable<[User]>
 }
 
 final class UserRepository: NSObject {
@@ -29,11 +29,11 @@ final class UserRepository: NSObject {
 }
 
 extension UserRepository: UserRepositoryProtocol {
-    func getSearchUser(query: String) -> RxSwift.Observable<[User]> {
-        return self.locale.getSearchUser(query: query).map { UserMapper.mapUserEntitiesToDomain(input: $0) }
+    func getListSearchUser(query: String) -> RxSwift.Observable<[User]> {
+        return self.locale.getListSearchUser(query: query).map { UserMapper.mapUserDetailEntitiesToDomain(input: $0) }
             .filter { !$0.isEmpty }
-            .ifEmpty(switchTo: self.remote.getSearchUser(query: query)
-                .map { UserMapper.mapUserResponseToEntities(input: $0) }
+            .ifEmpty(switchTo: self.remote.getListSearchUser(query: query)
+                .map { UserMapper.mapUserDetailResponseToEntities(input: $0) }
                 .flatMap {
                     let searchData = SearchDataEntity()
                     searchData.query = query
@@ -41,8 +41,8 @@ extension UserRepository: UserRepositoryProtocol {
                     
                     return self.locale.addSearchUserData(from: searchData) }
                 .filter { $0 }
-                .flatMap { _ in self.locale.getSearchUser(query: query)
-                        .map { UserMapper.mapUserEntitiesToDomain(input: $0) }
+                .flatMap { _ in self.locale.getListSearchUser(query: query)
+                        .map { UserMapper.mapUserDetailEntitiesToDomain(input: $0) }
                 }
             )
     }

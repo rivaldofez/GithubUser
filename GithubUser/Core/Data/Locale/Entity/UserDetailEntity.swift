@@ -2,8 +2,7 @@
 //  UserDetailEntity.swift
 //  GithubUser
 //
-//  Created by Rivaldo Fernandes on 20/04/23.
-//
+//  Created by Rivaldo Fernandes on 20/04/23.
 
 import Foundation
 import RealmSwift
@@ -26,20 +25,19 @@ class UserDetailEntity: Object {
     @Persisted var eventsURL: String = ""
     @Persisted var receivedURL: String = ""
     @Persisted var type: String = ""
-    @Persisted var siteAdmin: String = ""
+    @Persisted var siteAdmin: Bool = false
     @Persisted var name: String = ""
     @Persisted var company: String = ""
     @Persisted var location: String = ""
     @Persisted var email: String = ""
-    @Persisted var hireable: String = ""
     @Persisted var bio: String = ""
     @Persisted var twitterUsername: String = ""
     @Persisted var publicRepos: Int = 0
     @Persisted var publicGits: Int = 0
     @Persisted var followers: Int = 0
     @Persisted var following: Int = 0
-    @Persisted var createdAt: Date? = nil
-    @Persisted var updatedAt: Date? = nil
+    @Persisted var createdAt: String = ""
+    @Persisted var updatedAt: String = ""
     @Persisted var privateGist: Int = 0
     @Persisted var totalPrivateRepos: Int = 0
     @Persisted var ownedPrivateRepos: Int = 0

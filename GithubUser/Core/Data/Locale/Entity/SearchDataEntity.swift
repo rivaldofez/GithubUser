@@ -10,7 +10,7 @@ import RealmSwift
 
 class SearchDataEntity: Object {
     @Persisted var query: String = ""
-    @Persisted var users: List<UserEntity> = List()
+    @Persisted var users: List<UserDetailEntity> = List()
     
     override static func primaryKey() -> String? {
         return "query"

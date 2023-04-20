@@ -28,7 +28,17 @@ class ViewController: UIViewController {
         let repo = UserRepository.sharedInstance(locale, remote)
         
         
-        repo.getSearchUser(query: "rivaldo")
+//        repo.getListSearchUser(query: "rivaldo")
+//            .observe(on: MainScheduler.instance).subscribe { results in
+//                print(results)
+//            } onError: { error  in
+//                print(error.localizedDescription)
+//            } onCompleted: {
+//                print("completed")
+//            }.disposed(by: disposeBag)
+        
+        
+        remote.getListSearchUser(query: "rivaldo")
             .observe(on: MainScheduler.instance).subscribe { results in
                 print(results)
             } onError: { error  in
@@ -36,6 +46,15 @@ class ViewController: UIViewController {
             } onCompleted: {
                 print("completed")
             }.disposed(by: disposeBag)
+        
+//        remote.getDetailUser(username: "rivaldofez")
+//            .observe(on: MainScheduler.instance).subscribe { results in
+//                print(results)
+//            } onError: { error  in
+//                print(error.localizedDescription)
+//            } onCompleted: {
+//                print("completed")
+//            }.disposed(by: disposeBag)
         
         
         

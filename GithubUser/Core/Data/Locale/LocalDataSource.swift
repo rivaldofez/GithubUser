@@ -10,7 +10,7 @@ import RealmSwift
 import RxSwift
 
 protocol LocaleDataSourceProtocol: AnyObject {
-    func getSearchUser(query: String) -> Observable<List<UserEntity>>
+    func getListSearchUser(query: String) -> Observable<List<UserDetailEntity>>
     func addSearchUserData(from searchData: SearchDataEntity) ->  Observable<Bool>
 }
 
@@ -27,25 +27,44 @@ final class LocaleDataSource: NSObject {
 }
 
 extension LocaleDataSource: LocaleDataSourceProtocol {
-    func getSearchUser(query: String) -> RxSwift.Observable<List<UserEntity>> {
-        return Observable<List<UserEntity>>.create { observer in
+    func getListSearchUser(query: String) -> RxSwift.Observable<RealmSwift.List<UserDetailEntity>> {
+        
+        return Observable<List<UserDetailEntity>>.create { observer in
             if let realm = self.realm {
                 let searchDataUsers: Results<SearchDataEntity> = {
                     realm.objects(SearchDataEntity.self)
-                        .where {
-                            $0.query == query
-                        }
-                        
+                        .where { $0.query == query }
                 }()
+                
                 observer.onNext(searchDataUsers.toArray(ofType: SearchDataEntity.self).first?.users ?? List())
-                observer.onCompleted()
             } else {
                 observer.onError(DatabaseError.invalidInstance)
             }
             
             return Disposables.create()
         }
+        
     }
+    
+//    func getSearchUser(query: String) -> RxSwift.Observable<List<UserEntity>> {
+//        return Observable<List<UserEntity>>.create { observer in
+//            if let realm = self.realm {
+//                let searchDataUsers: Results<SearchDataEntity> = {
+//                    realm.objects(SearchDataEntity.self)
+//                        .where {
+//                            $0.query == query
+//                        }
+//
+//                }()
+//                observer.onNext(searchDataUsers.toArray(ofType: SearchDataEntity.self).first?.users ?? List())
+//                observer.onCompleted()
+//            } else {
+//                observer.onError(DatabaseError.invalidInstance)
+//            }
+//
+//            return Disposables.create()
+//        }
+//    }
     
     func addSearchUserData(from searchData: SearchDataEntity) -> RxSwift.Observable<Bool> {
         return Observable<Bool>.create { observer in

@@ -7,29 +7,35 @@
 
 import Foundation
 
+// This file was generated from JSON Schema using quicktype, do not modify it directly.
+// To parse the JSON, add this file to your project and do:
+//
+//   let detailUserResponse = try? JSONDecoder().decode(DetailUserResponse.self, from: jsonData)
+
+import Foundation
+
 // MARK: - DetailUserResponse
 struct UserDetailResponse: Codable {
-    let login: String
-    let id: Int
-    let nodeID: String
-    let avatarURL: String
-    let gravatarID: String
-    let url, htmlURL, followersURL: String
-    let followingURL, gistsURL, starredURL: String
-    let subscriptionsURL, organizationsURL, reposURL: String
-    let eventsURL: String
-    let receivedEventsURL: String
-    let type: String
-    let siteAdmin: Bool
-    let name, company, blog, location: String
-    let email, hireable: String?
-    let bio, twitterUsername: String
-    let publicRepos, publicGists, followers, following: Int
-    let createdAt, updatedAt: Date
-    let privateGists, totalPrivateRepos, ownedPrivateRepos, diskUsage: Int
-    let collaborators: Int
-    let twoFactorAuthentication: Bool
-    let plan: PlanResponse
+    let login: String?
+    let id: Int?
+    let nodeID: String?
+    let avatarURL: String?
+    let gravatarID: String?
+    let url, htmlURL, followersURL: String?
+    let followingURL, gistsURL, starredURL: String?
+    let subscriptionsURL, organizationsURL, reposURL: String?
+    let eventsURL: String?
+    let receivedEventsURL: String?
+    let type: String?
+    let siteAdmin: Bool?
+    let name, company, blog, location: String?
+    let email: String?
+    let bio, twitterUsername: String?
+    let publicRepos, publicGists, followers, following: Int?
+    let createdAt, updatedAt: String
+    let privateGists, totalPrivateRepos, ownedPrivateRepos, diskUsage: Int?
+    let collaborators: Int?
+    let twoFactorAuthentication: Bool?
 
     enum CodingKeys: String, CodingKey {
         case login, id
@@ -49,7 +55,7 @@ struct UserDetailResponse: Codable {
         case receivedEventsURL = "received_events_url"
         case type
         case siteAdmin = "site_admin"
-        case name, company, blog, location, email, hireable, bio
+        case name, company, blog, location, email, bio
         case twitterUsername = "twitter_username"
         case publicRepos = "public_repos"
         case publicGists = "public_gists"
@@ -62,17 +68,5 @@ struct UserDetailResponse: Codable {
         case diskUsage = "disk_usage"
         case collaborators
         case twoFactorAuthentication = "two_factor_authentication"
-        case plan
-    }
-}
-
-// MARK: - Plan
-struct PlanResponse: Codable {
-    let name: String
-    let space, collaborators, privateRepos: Int
-
-    enum CodingKeys: String, CodingKey {
-        case name, space, collaborators
-        case privateRepos = "private_repos"
     }
 }
