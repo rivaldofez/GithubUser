@@ -7,6 +7,7 @@
 
 import UIKit
 import RxSwift
+import RealmSwift
 
 class ViewController: UIViewController {
     
@@ -19,15 +20,34 @@ class ViewController: UIViewController {
         view.backgroundColor = .red
         
         
-        RemoteDataSource.sharedInstance.getFollowerUser(username: "rivaldofez").observe(on: MainScheduler.instance).subscribe { results in
-            
-            print(results)
-            
-        } onError: { error  in
-            print(error.localizedDescription)
-        } onCompleted: {
-            print("completed")
-        }.disposed(by: disposeBag)
+        let realm = try? Realm()
+        
+        let locale : LocaleDataSource = LocaleDataSource.sharedInstance(realm)
+        let remote : RemoteDataSource = RemoteDataSource.sharedInstance
+        
+        let repo = UserRepository.sharedInstance(locale, remote)
+        
+        
+        repo.getSearchUser(query: "rivaldo")
+            .observe(on: MainScheduler.instance).subscribe { results in
+                print(results)
+            } onError: { error  in
+                print(error.localizedDescription)
+            } onCompleted: {
+                print("completed")
+            }.disposed(by: disposeBag)
+        
+        
+        
+//        RemoteDataSource.sharedInstance.getFollowerUser(username: "rivaldofez").observe(on: MainScheduler.instance).subscribe { results in
+//
+//            print(results)
+//
+//        } onError: { error  in
+//            print(error.localizedDescription)
+//        } onCompleted: {
+//            print("completed")
+//        }.disposed(by: disposeBag)
     }
 
 

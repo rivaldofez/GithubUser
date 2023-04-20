@@ -35,7 +35,7 @@ extension LocaleDataSource: LocaleDataSourceProtocol {
                         .where {
                             $0.query == query
                         }
-                        .sorted(byKeyPath: "username", ascending: true)
+                        
                 }()
                 observer.onNext(searchDataUsers.toArray(ofType: SearchDataEntity.self).first?.users ?? List())
                 observer.onCompleted()
