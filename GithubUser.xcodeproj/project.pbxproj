@@ -25,6 +25,7 @@
 		7E6D707B29F194100043D2B0 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6D707A29F194100043D2B0 /* UserRepository.swift */; };
 		7E6D707F29F1947C0043D2B0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6D707E29F1947C0043D2B0 /* User.swift */; };
 		7E6D708229F195000043D2B0 /* UserMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6D708129F195000043D2B0 /* UserMapper.swift */; };
+		7ED92E5529F1D59100690195 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED92E5429F1D59100690195 /* HomeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,7 @@
 		7E6D707A29F194100043D2B0 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		7E6D707E29F1947C0043D2B0 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7E6D708129F195000043D2B0 /* UserMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMapper.swift; sourceTree = "<group>"; };
+		7ED92E5429F1D59100690195 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		D998DBE652EF07438DD222E6 /* Pods-GithubUser.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GithubUser.release.xcconfig"; path = "Target Support Files/Pods-GithubUser/Pods-GithubUser.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -93,6 +95,7 @@
 		7E6D704729F11A250043D2B0 /* GithubUser */ = {
 			isa = PBXGroup;
 			children = (
+				7ED92E5229F1D57900690195 /* Module */,
 				7E6D707C29F194690043D2B0 /* Domain */,
 				7E6D706129F12DC90043D2B0 /* Util */,
 				7E6D705E29F12DAD0043D2B0 /* Core */,
@@ -201,6 +204,22 @@
 				7E6D708129F195000043D2B0 /* UserMapper.swift */,
 			);
 			path = Mapper;
+			sourceTree = "<group>";
+		};
+		7ED92E5229F1D57900690195 /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				7ED92E5329F1D58100690195 /* Home */,
+			);
+			path = Module;
+			sourceTree = "<group>";
+		};
+		7ED92E5329F1D58100690195 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				7ED92E5429F1D59100690195 /* HomeViewController.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 		F8B3185532DF63EDD673D979 /* Pods */ = {
@@ -337,6 +356,7 @@
 				7E6D706F29F174030043D2B0 /* CustomError+Extension.swift in Sources */,
 				7E6D707229F17EF50043D2B0 /* UserEntity.swift in Sources */,
 				7E6D706B29F15BB40043D2B0 /* UserDetailResponse.swift in Sources */,
+				7ED92E5529F1D59100690195 /* HomeViewController.swift in Sources */,
 				7E6D704929F11A250043D2B0 /* AppDelegate.swift in Sources */,
 				7E6D706429F12DF50043D2B0 /* ApiCall.swift in Sources */,
 				7E6D707929F18C490043D2B0 /* SearchDataEntity.swift in Sources */,
