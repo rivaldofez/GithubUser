@@ -21,6 +21,7 @@
 		7E6D707229F17EF50043D2B0 /* UserEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6D707129F17EF50043D2B0 /* UserEntity.swift */; };
 		7E6D707529F17F110043D2B0 /* LocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6D707429F17F110043D2B0 /* LocalDataSource.swift */; };
 		7E6D707729F1839D0043D2B0 /* UserDetailEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6D707629F1839D0043D2B0 /* UserDetailEntity.swift */; };
+		7E6D707929F18C490043D2B0 /* SearchDataEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6D707829F18C490043D2B0 /* SearchDataEntity.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 		7E6D707129F17EF50043D2B0 /* UserEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEntity.swift; sourceTree = "<group>"; };
 		7E6D707429F17F110043D2B0 /* LocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataSource.swift; sourceTree = "<group>"; };
 		7E6D707629F1839D0043D2B0 /* UserDetailEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailEntity.swift; sourceTree = "<group>"; };
+		7E6D707829F18C490043D2B0 /* SearchDataEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDataEntity.swift; sourceTree = "<group>"; };
 		D998DBE652EF07438DD222E6 /* Pods-GithubUser.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GithubUser.release.xcconfig"; path = "Target Support Files/Pods-GithubUser/Pods-GithubUser.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -163,6 +165,7 @@
 			children = (
 				7E6D707129F17EF50043D2B0 /* UserEntity.swift */,
 				7E6D707629F1839D0043D2B0 /* UserDetailEntity.swift */,
+				7E6D707829F18C490043D2B0 /* SearchDataEntity.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -300,6 +303,7 @@
 				7E6D706B29F15BB40043D2B0 /* UserDetailResponse.swift in Sources */,
 				7E6D704929F11A250043D2B0 /* AppDelegate.swift in Sources */,
 				7E6D706429F12DF50043D2B0 /* ApiCall.swift in Sources */,
+				7E6D707929F18C490043D2B0 /* SearchDataEntity.swift in Sources */,
 				7E6D704B29F11A250043D2B0 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

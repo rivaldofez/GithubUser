@@ -9,25 +9,25 @@ import Foundation
 import RealmSwift
 
 class UserEntity: Object {
-    @objc dynamic var login: String = ""
-    @objc dynamic var id: Int = 0
-    @objc dynamic var nodeID: String = ""
-    @objc dynamic var avatarURL: String = ""
-    @objc dynamic var gravatarID: String = ""
-    @objc dynamic var url: String = ""
-    @objc dynamic var htmlURL: String = ""
-    @objc dynamic var followersURL: String = ""
-    @objc dynamic var followingURL: String = ""
-    @objc dynamic var gistsURL: String = ""
-    @objc dynamic var starredURL: String = ""
-    @objc dynamic var subscriptionURL: String = ""
-    @objc dynamic var organizationURL: String = ""
-    @objc dynamic var reposURL: String = ""
-    @objc dynamic var eventsURL: String = ""
-    @objc dynamic var receivedURL: String = ""
-    @objc dynamic var type: String = ""
-    @objc dynamic var siteAdmin: String = ""
-    @objc dynamic var score: Int = 0
+    @Persisted var login: String = ""
+    @Persisted var id: Int = 0
+    @Persisted var nodeID: String = ""
+    @Persisted var avatarURL: String = ""
+    @Persisted var gravatarID: String = ""
+    @Persisted var url: String = ""
+    @Persisted var htmlURL: String = ""
+    @Persisted var followersURL: String = ""
+    @Persisted var followingURL: String = ""
+    @Persisted var gistsURL: String = ""
+    @Persisted var starredURL: String = ""
+    @Persisted var subscriptionURL: String = ""
+    @Persisted var organizationURL: String = ""
+    @Persisted var reposURL: String = ""
+    @Persisted var eventsURL: String = ""
+    @Persisted var receivedURL: String = ""
+    @Persisted var type: String = ""
+    @Persisted var siteAdmin: String = ""
+    @Persisted var score: Int = 0
     
     override static func primaryKey() -> String? {
         return "id"
