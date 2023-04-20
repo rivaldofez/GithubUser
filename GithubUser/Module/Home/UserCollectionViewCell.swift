@@ -52,7 +52,6 @@ class UserCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        
         contentView.addSubview(userAvatar)
         contentView.addSubview(nameLabel)
         contentView.addSubview(usernameLabel)
