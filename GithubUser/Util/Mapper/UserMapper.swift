@@ -11,8 +11,9 @@ import RealmSwift
 final class UserMapper {
     static func mapUserResponseToEntities(
         input userResponses: [UserResponse]
-    ) -> [UserEntity] {
-        return userResponses.map { source in
+    ) -> List<UserEntity> {
+        let users = List<UserEntity>()
+        users.append(objectsIn: userResponses.map { source in
             let newUserEntity = UserEntity()
             newUserEntity.login = source.login
             newUserEntity.id = source.id
@@ -34,7 +35,11 @@ final class UserMapper {
             newUserEntity.siteAdmin = source.siteAdmin
             newUserEntity.score = source.score ?? 0
             
-        }
+            return newUserEntity
+            
+        })
+        return users
+        
     }
     
     static func mapUserEntitiesToDomain(

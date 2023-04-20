@@ -26,7 +26,7 @@ class UserEntity: Object {
     @Persisted var eventsURL: String = ""
     @Persisted var receivedURL: String = ""
     @Persisted var type: String = ""
-    @Persisted var siteAdmin: String = ""
+    @Persisted var siteAdmin: Bool = false
     @Persisted var score: Int = 0
     
     override static func primaryKey() -> String? {
