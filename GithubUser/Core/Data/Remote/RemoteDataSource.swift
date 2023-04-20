@@ -12,7 +12,7 @@ import Alamofire
 protocol RemoteDataSourceProtocol: AnyObject {
     func getSearchUser(query: String) -> Observable<[UserResponse]>
     
-    func getDetailUser(username: String) -> Observable<UserDetailResponse>
+//    func getDetailUser(username: String) -> Observable<UserDetailResponse>
 }
 
 final class RemoteDataSource: NSObject {
@@ -20,6 +20,7 @@ final class RemoteDataSource: NSObject {
 }
 
 extension RemoteDataSource: RemoteDataSourceProtocol {
+
     
     private func generateHeader(bearerToken: String) -> HTTPHeaders {
         return ["Authorization": "Bearer " + bearerToken]
@@ -34,6 +35,7 @@ extension RemoteDataSource: RemoteDataSourceProtocol {
             if let url = URL(string: Endpoints.Gets.searchUser(query: query).url){
                 self.requestGet(url: url)
                     .responseDecodable(of: UserListResponse.self) { response in
+
                         switch (response.result) {
                         case .success(let value):
                             observer.onNext(value.items)
@@ -47,10 +49,6 @@ extension RemoteDataSource: RemoteDataSourceProtocol {
             
             return Disposables.create()
         }
-    }
-    
-    func getDetailUser(username: String) -> RxSwift.Observable<UserDetailResponse> {
-        <#code#>
     }
     
     
