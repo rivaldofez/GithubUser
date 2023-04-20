@@ -14,6 +14,8 @@
 		7E6D705229F11A260043D2B0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E6D705129F11A260043D2B0 /* Assets.xcassets */; };
 		7E6D705529F11A260043D2B0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E6D705329F11A260043D2B0 /* LaunchScreen.storyboard */; };
 		7E6D706429F12DF50043D2B0 /* ApiCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6D706329F12DF50043D2B0 /* ApiCall.swift */; };
+		7E6D706929F15A410043D2B0 /* UserListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6D706829F15A410043D2B0 /* UserListResponse.swift */; };
+		7E6D706B29F15BB40043D2B0 /* DetailUserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6D706A29F15BB40043D2B0 /* DetailUserResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +29,8 @@
 		7E6D705429F11A260043D2B0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7E6D705629F11A260043D2B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7E6D706329F12DF50043D2B0 /* ApiCall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiCall.swift; sourceTree = "<group>"; };
+		7E6D706829F15A410043D2B0 /* UserListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListResponse.swift; sourceTree = "<group>"; };
+		7E6D706A29F15BB40043D2B0 /* DetailUserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUserResponse.swift; sourceTree = "<group>"; };
 		D998DBE652EF07438DD222E6 /* Pods-GithubUser.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GithubUser.release.xcconfig"; path = "Target Support Files/Pods-GithubUser/Pods-GithubUser.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -102,6 +106,7 @@
 		7E6D706029F12DB90043D2B0 /* Remote */ = {
 			isa = PBXGroup;
 			children = (
+				7E6D706629F159EC0043D2B0 /* Response */,
 			);
 			path = Remote;
 			sourceTree = "<group>";
@@ -120,6 +125,15 @@
 				7E6D706329F12DF50043D2B0 /* ApiCall.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		7E6D706629F159EC0043D2B0 /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				7E6D706829F15A410043D2B0 /* UserListResponse.swift */,
+				7E6D706A29F15BB40043D2B0 /* DetailUserResponse.swift */,
+			);
+			path = Response;
 			sourceTree = "<group>";
 		};
 		F8B3185532DF63EDD673D979 /* Pods */ = {
@@ -245,7 +259,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E6D706929F15A410043D2B0 /* UserListResponse.swift in Sources */,
 				7E6D704D29F11A250043D2B0 /* ViewController.swift in Sources */,
+				7E6D706B29F15BB40043D2B0 /* DetailUserResponse.swift in Sources */,
 				7E6D704929F11A250043D2B0 /* AppDelegate.swift in Sources */,
 				7E6D706429F12DF50043D2B0 /* ApiCall.swift in Sources */,
 				7E6D704B29F11A250043D2B0 /* SceneDelegate.swift in Sources */,
