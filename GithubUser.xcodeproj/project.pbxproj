@@ -22,6 +22,9 @@
 		7E6D707529F17F110043D2B0 /* LocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6D707429F17F110043D2B0 /* LocalDataSource.swift */; };
 		7E6D707729F1839D0043D2B0 /* UserDetailEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6D707629F1839D0043D2B0 /* UserDetailEntity.swift */; };
 		7E6D707929F18C490043D2B0 /* SearchDataEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6D707829F18C490043D2B0 /* SearchDataEntity.swift */; };
+		7E6D707B29F194100043D2B0 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6D707A29F194100043D2B0 /* UserRepository.swift */; };
+		7E6D707F29F1947C0043D2B0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6D707E29F1947C0043D2B0 /* User.swift */; };
+		7E6D708229F195000043D2B0 /* UserMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6D708129F195000043D2B0 /* UserMapper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +46,9 @@
 		7E6D707429F17F110043D2B0 /* LocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataSource.swift; sourceTree = "<group>"; };
 		7E6D707629F1839D0043D2B0 /* UserDetailEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailEntity.swift; sourceTree = "<group>"; };
 		7E6D707829F18C490043D2B0 /* SearchDataEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDataEntity.swift; sourceTree = "<group>"; };
+		7E6D707A29F194100043D2B0 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
+		7E6D707E29F1947C0043D2B0 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		7E6D708129F195000043D2B0 /* UserMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMapper.swift; sourceTree = "<group>"; };
 		D998DBE652EF07438DD222E6 /* Pods-GithubUser.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GithubUser.release.xcconfig"; path = "Target Support Files/Pods-GithubUser/Pods-GithubUser.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -87,6 +93,7 @@
 		7E6D704729F11A250043D2B0 /* GithubUser */ = {
 			isa = PBXGroup;
 			children = (
+				7E6D707C29F194690043D2B0 /* Domain */,
 				7E6D706129F12DC90043D2B0 /* Util */,
 				7E6D705E29F12DAD0043D2B0 /* Core */,
 				7E6D704829F11A250043D2B0 /* AppDelegate.swift */,
@@ -112,6 +119,7 @@
 			children = (
 				7E6D707029F17ECE0043D2B0 /* Locale */,
 				7E6D706029F12DB90043D2B0 /* Remote */,
+				7E6D707A29F194100043D2B0 /* UserRepository.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -128,6 +136,7 @@
 		7E6D706129F12DC90043D2B0 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				7E6D708029F194F10043D2B0 /* Mapper */,
 				7E6D706229F12DE30043D2B0 /* Network */,
 				7E6D706E29F174030043D2B0 /* CustomError+Extension.swift */,
 			);
@@ -168,6 +177,30 @@
 				7E6D707829F18C490043D2B0 /* SearchDataEntity.swift */,
 			);
 			path = Entity;
+			sourceTree = "<group>";
+		};
+		7E6D707C29F194690043D2B0 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				7E6D707D29F194710043D2B0 /* Model */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		7E6D707D29F194710043D2B0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7E6D707E29F1947C0043D2B0 /* User.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7E6D708029F194F10043D2B0 /* Mapper */ = {
+			isa = PBXGroup;
+			children = (
+				7E6D708129F195000043D2B0 /* UserMapper.swift */,
+			);
+			path = Mapper;
 			sourceTree = "<group>";
 		};
 		F8B3185532DF63EDD673D979 /* Pods */ = {
@@ -293,11 +326,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E6D707B29F194100043D2B0 /* UserRepository.swift in Sources */,
 				7E6D707529F17F110043D2B0 /* LocalDataSource.swift in Sources */,
 				7E6D706929F15A410043D2B0 /* UserListResponse.swift in Sources */,
 				7E6D706D29F15EFB0043D2B0 /* RemoteDataSource.swift in Sources */,
 				7E6D704D29F11A250043D2B0 /* ViewController.swift in Sources */,
 				7E6D707729F1839D0043D2B0 /* UserDetailEntity.swift in Sources */,
+				7E6D708229F195000043D2B0 /* UserMapper.swift in Sources */,
+				7E6D707F29F1947C0043D2B0 /* User.swift in Sources */,
 				7E6D706F29F174030043D2B0 /* CustomError+Extension.swift in Sources */,
 				7E6D707229F17EF50043D2B0 /* UserEntity.swift in Sources */,
 				7E6D706B29F15BB40043D2B0 /* UserDetailResponse.swift in Sources */,
