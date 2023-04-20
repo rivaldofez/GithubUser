@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - DetailUserResponse
-struct DetailUserResponse: Codable {
+struct UserDetailResponse: Codable {
     let login: String
     let id: Int
     let nodeID: String

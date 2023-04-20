@@ -15,7 +15,9 @@
 		7E6D705529F11A260043D2B0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E6D705329F11A260043D2B0 /* LaunchScreen.storyboard */; };
 		7E6D706429F12DF50043D2B0 /* ApiCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6D706329F12DF50043D2B0 /* ApiCall.swift */; };
 		7E6D706929F15A410043D2B0 /* UserListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6D706829F15A410043D2B0 /* UserListResponse.swift */; };
-		7E6D706B29F15BB40043D2B0 /* DetailUserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6D706A29F15BB40043D2B0 /* DetailUserResponse.swift */; };
+		7E6D706B29F15BB40043D2B0 /* UserDetailResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6D706A29F15BB40043D2B0 /* UserDetailResponse.swift */; };
+		7E6D706D29F15EFB0043D2B0 /* RemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6D706C29F15EFB0043D2B0 /* RemoteDataSource.swift */; };
+		7E6D706F29F174030043D2B0 /* CustomError+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6D706E29F174030043D2B0 /* CustomError+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,7 +32,9 @@
 		7E6D705629F11A260043D2B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7E6D706329F12DF50043D2B0 /* ApiCall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiCall.swift; sourceTree = "<group>"; };
 		7E6D706829F15A410043D2B0 /* UserListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListResponse.swift; sourceTree = "<group>"; };
-		7E6D706A29F15BB40043D2B0 /* DetailUserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUserResponse.swift; sourceTree = "<group>"; };
+		7E6D706A29F15BB40043D2B0 /* UserDetailResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailResponse.swift; sourceTree = "<group>"; };
+		7E6D706C29F15EFB0043D2B0 /* RemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteDataSource.swift; sourceTree = "<group>"; };
+		7E6D706E29F174030043D2B0 /* CustomError+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomError+Extension.swift"; sourceTree = "<group>"; };
 		D998DBE652EF07438DD222E6 /* Pods-GithubUser.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GithubUser.release.xcconfig"; path = "Target Support Files/Pods-GithubUser/Pods-GithubUser.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -107,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				7E6D706629F159EC0043D2B0 /* Response */,
+				7E6D706C29F15EFB0043D2B0 /* RemoteDataSource.swift */,
 			);
 			path = Remote;
 			sourceTree = "<group>";
@@ -115,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				7E6D706229F12DE30043D2B0 /* Network */,
+				7E6D706E29F174030043D2B0 /* CustomError+Extension.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -131,7 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				7E6D706829F15A410043D2B0 /* UserListResponse.swift */,
-				7E6D706A29F15BB40043D2B0 /* DetailUserResponse.swift */,
+				7E6D706A29F15BB40043D2B0 /* UserDetailResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -260,8 +266,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				7E6D706929F15A410043D2B0 /* UserListResponse.swift in Sources */,
+				7E6D706D29F15EFB0043D2B0 /* RemoteDataSource.swift in Sources */,
 				7E6D704D29F11A250043D2B0 /* ViewController.swift in Sources */,
-				7E6D706B29F15BB40043D2B0 /* DetailUserResponse.swift in Sources */,
+				7E6D706F29F174030043D2B0 /* CustomError+Extension.swift in Sources */,
+				7E6D706B29F15BB40043D2B0 /* UserDetailResponse.swift in Sources */,
 				7E6D704929F11A250043D2B0 /* AppDelegate.swift in Sources */,
 				7E6D706429F12DF50043D2B0 /* ApiCall.swift in Sources */,
 				7E6D704B29F11A250043D2B0 /* SceneDelegate.swift in Sources */,
