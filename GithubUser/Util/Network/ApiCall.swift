@@ -32,9 +32,9 @@ enum Endpoints {
             case .searchUser(let query):
                 return "\(API.baseURL)search/users?q=\(query)"
             case .follower(let username):
-                return "\(API.baseURL)/users/\(username)/followers"
+                return "\(API.baseURL)users/\(username)/followers"
             case .following(let username):
-                return "\(API.baseURL)/users/\(username)/following"
+                return "\(API.baseURL)users/\(username)/following"
             }
         }
     }

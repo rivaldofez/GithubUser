@@ -34,7 +34,7 @@ struct UserResponse: Codable {
    let receivedEventsURL: String
    let type: String
    let siteAdmin: Bool
-   let score: Int
+   let score: Int?
 
    enum CodingKeys: String, CodingKey {
        case login, id

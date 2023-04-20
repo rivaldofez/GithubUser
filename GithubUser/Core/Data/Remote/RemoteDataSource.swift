@@ -12,7 +12,11 @@ import Alamofire
 protocol RemoteDataSourceProtocol: AnyObject {
     func getSearchUser(query: String) -> Observable<[UserResponse]>
     
-//    func getDetailUser(username: String) -> Observable<UserDetailResponse>
+    func getDetailUser(username: String) -> Observable<UserDetailResponse>
+    
+    func getFollowingUser(username: String) -> Observable<[UserResponse]>
+    
+    func getFollowerUser(username: String) -> Observable<[UserResponse]>
 }
 
 final class RemoteDataSource: NSObject {
@@ -20,7 +24,7 @@ final class RemoteDataSource: NSObject {
 }
 
 extension RemoteDataSource: RemoteDataSourceProtocol {
-
+    
     
     private func generateHeader(bearerToken: String) -> HTTPHeaders {
         return ["Authorization": "Bearer " + bearerToken]
@@ -39,6 +43,68 @@ extension RemoteDataSource: RemoteDataSourceProtocol {
                         switch (response.result) {
                         case .success(let value):
                             observer.onNext(value.items)
+                            observer.onCompleted()
+                            
+                        case .failure:
+                            observer.onError(URLError.invalidResponse)
+                        }
+                    }
+            }
+            
+            return Disposables.create()
+        }
+    }
+    
+    func getDetailUser(username: String) -> RxSwift.Observable<UserDetailResponse> {
+        return Observable<UserDetailResponse>.create { observer in
+            if let url = URL(string: Endpoints.Gets.detailUser(username: username).url) {
+                self.requestGet(url: url)
+                    .responseDecodable(of: UserDetailResponse.self) { response in
+                        switch (response.result) {
+                        case .success(let value):
+                            observer.onNext(value)
+                            observer.onCompleted()
+                            
+                        case .failure:
+                            observer.onError(URLError.invalidResponse)
+                        }
+                    }
+            }
+            
+            return Disposables.create()
+        }
+    }
+    
+    func getFollowingUser(username: String) -> RxSwift.Observable<[UserResponse]> {
+        return Observable<[UserResponse]>.create { observer in
+            if let url = URL(string: Endpoints.Gets.following(username: username).url){
+                self.requestGet(url: url)
+                    .responseDecodable(of: [UserResponse].self) { response in
+
+                        switch (response.result) {
+                        case .success(let value):
+                            observer.onNext(value)
+                            observer.onCompleted()
+                            
+                        case .failure:
+                            observer.onError(URLError.invalidResponse)
+                        }
+                    }
+            }
+            
+            return Disposables.create()
+        }
+    }
+    
+    func getFollowerUser(username: String) -> RxSwift.Observable<[UserResponse]> {
+        return Observable<[UserResponse]>.create { observer in
+            if let url = URL(string: Endpoints.Gets.follower(username: username).url){
+                self.requestGet(url: url)
+                    .responseDecodable(of: [UserResponse].self) { response in
+                        
+                        switch (response.result) {
+                        case .success(let value):
+                            observer.onNext(value)
                             observer.onCompleted()
                             
                         case .failure:

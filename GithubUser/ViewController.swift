@@ -19,7 +19,7 @@ class ViewController: UIViewController {
         view.backgroundColor = .red
         
         
-        RemoteDataSource.sharedInstance.getSearchUser(query: "rivaldofez").observe(on: MainScheduler.instance).subscribe { results in
+        RemoteDataSource.sharedInstance.getFollowerUser(username: "rivaldofez").observe(on: MainScheduler.instance).subscribe { results in
             
             print(results)
             
