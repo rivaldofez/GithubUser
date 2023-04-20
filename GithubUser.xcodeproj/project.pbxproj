@@ -13,6 +13,7 @@
 		7E6D704D29F11A250043D2B0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6D704C29F11A250043D2B0 /* ViewController.swift */; };
 		7E6D705229F11A260043D2B0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E6D705129F11A260043D2B0 /* Assets.xcassets */; };
 		7E6D705529F11A260043D2B0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E6D705329F11A260043D2B0 /* LaunchScreen.storyboard */; };
+		7E6D706429F12DF50043D2B0 /* ApiCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6D706329F12DF50043D2B0 /* ApiCall.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		7E6D705129F11A260043D2B0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7E6D705429F11A260043D2B0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7E6D705629F11A260043D2B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7E6D706329F12DF50043D2B0 /* ApiCall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiCall.swift; sourceTree = "<group>"; };
 		D998DBE652EF07438DD222E6 /* Pods-GithubUser.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GithubUser.release.xcconfig"; path = "Target Support Files/Pods-GithubUser/Pods-GithubUser.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -69,6 +71,8 @@
 		7E6D704729F11A250043D2B0 /* GithubUser */ = {
 			isa = PBXGroup;
 			children = (
+				7E6D706129F12DC90043D2B0 /* Util */,
+				7E6D705E29F12DAD0043D2B0 /* Core */,
 				7E6D704829F11A250043D2B0 /* AppDelegate.swift */,
 				7E6D704A29F11A250043D2B0 /* SceneDelegate.swift */,
 				7E6D704C29F11A250043D2B0 /* ViewController.swift */,
@@ -77,6 +81,45 @@
 				7E6D705629F11A260043D2B0 /* Info.plist */,
 			);
 			path = GithubUser;
+			sourceTree = "<group>";
+		};
+		7E6D705E29F12DAD0043D2B0 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				7E6D705F29F12DB20043D2B0 /* Data */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		7E6D705F29F12DB20043D2B0 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				7E6D706029F12DB90043D2B0 /* Remote */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		7E6D706029F12DB90043D2B0 /* Remote */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Remote;
+			sourceTree = "<group>";
+		};
+		7E6D706129F12DC90043D2B0 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				7E6D706229F12DE30043D2B0 /* Network */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		7E6D706229F12DE30043D2B0 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				7E6D706329F12DF50043D2B0 /* ApiCall.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 		F8B3185532DF63EDD673D979 /* Pods */ = {
@@ -204,6 +247,7 @@
 			files = (
 				7E6D704D29F11A250043D2B0 /* ViewController.swift in Sources */,
 				7E6D704929F11A250043D2B0 /* AppDelegate.swift in Sources */,
+				7E6D706429F12DF50043D2B0 /* ApiCall.swift in Sources */,
 				7E6D704B29F11A250043D2B0 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
