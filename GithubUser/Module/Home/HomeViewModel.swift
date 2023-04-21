@@ -45,7 +45,7 @@ class HomeViewModel: HomeViewModelProtocol {
     func getListSearchUser(query: String){
         isLoading = true
         
-        repository.getListSearchUser(query: query)
+        repository.getListSearchUser(query: query.lowercased())
             .observe(on: MainScheduler.instance)
             .subscribe{ [weak self] userResult in
                 self?.view?.updateSearchUserList(with: userResult)
