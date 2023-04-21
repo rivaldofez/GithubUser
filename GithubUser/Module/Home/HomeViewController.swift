@@ -39,7 +39,6 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         print(state)
     }
     
-    
     private let disposeBag = DisposeBag()
 
     private let searchController: UISearchController = {
@@ -52,7 +51,6 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         
         return searchController
     }()
-    
     
     private lazy var userCollectionView: UICollectionView = {
       
@@ -130,9 +128,6 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UserCollectionViewCell.identifier, for: indexPath) as? UserCollectionViewCell else { return UICollectionViewCell() }
         
         cell.configure(with: users[indexPath.item])
-        
-
-        
         return cell
     }
     
@@ -140,6 +135,4 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         let user = users[indexPath.item]
         viewModel?.didSelectUser(with: user)
     }
-    
-    
 }
