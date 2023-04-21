@@ -71,10 +71,10 @@ class UserCollectionViewCell: UICollectionViewCell {
     }
     
     func configure(with user: User){
-        usernameLabel.text = user.login
-        nameLabel.text = user.name
-        bioLabel.text = user.bio
-        regionLabel.text = user.location
+        usernameLabel.text = user.login.isEmpty ? "-" : user.login
+        nameLabel.text = user.name.isEmpty ? "-" : user.name
+        bioLabel.text = user.bio.isEmpty ? "-" : user.bio
+        regionLabel.text = user.location.isEmpty ? "-" : user.location
         
         guard let avatarURL = URL(string: user.avatarURL) else { return }
         userAvatarImageView.sd_setImage(with: avatarURL)
