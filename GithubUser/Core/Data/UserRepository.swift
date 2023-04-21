@@ -29,21 +29,28 @@ final class UserRepository: NSObject {
 }
 
 extension UserRepository: UserRepositoryProtocol {
-    func getListSearchUser(query: String) -> RxSwift.Observable<[User]> {
-        return self.locale.getListSearchUser(query: query).map { UserMapper.mapUserDetailEntitiesToDomain(input: $0) }
-            .filter { !$0.isEmpty }
+
+    func getListSearchUser(query: String) -> Observable<[User]> {
+        return self.locale.getListSearchUser(query: query)
+            .map {
+                print($0.count)
+                 return UserMapper.mapUserDetailEntitiesToDomain(input: $0)
+            }
+            .filter { $0.count != 0 }
             .ifEmpty(switchTo: self.remote.getListSearchUser(query: query)
-                .map { UserMapper.mapUserDetailResponseToEntities(input: $0) }
+                .map {
+                    return UserMapper.mapUserDetailResponseToEntities(input: $0) }
                 .flatMap {
-                    let searchData = SearchDataEntity()
-                    searchData.query = query
-                    searchData.users = $0
+                    let searchUserEntity = SearchDataEntity()
+                    searchUserEntity.query = query
+                    searchUserEntity.users = $0
                     
-                    return self.locale.addSearchUserData(from: searchData) }
-                .filter { $0 }
-                .flatMap { _ in self.locale.getListSearchUser(query: query)
-                        .map { UserMapper.mapUserDetailEntitiesToDomain(input: $0) }
+                    return self.locale.addSearchUserData(from: searchUserEntity)
                 }
+                .filter { $0 }
+                .flatMap{_ in self.locale.getListSearchUser(query: query)
+                    .map { UserMapper.mapUserDetailEntitiesToDomain(input: $0)}}
+                     
             )
     }
 }

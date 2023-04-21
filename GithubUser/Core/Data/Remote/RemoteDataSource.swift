@@ -108,7 +108,6 @@ extension RemoteDataSource: RemoteDataSourceProtocol {
                         
                         switch (response.result) {
                             
-                            
                         case .success(let value):
                             observer.onNext(value)
                             observer.onCompleted()
