@@ -12,6 +12,7 @@ import RxSwift
 protocol LocaleDataSourceProtocol: AnyObject {
     func getListSearchUser(query: String) -> Observable<List<UserDetailEntity>>
     func addSearchUserData(from searchData: SearchDataEntity) ->  Observable<Bool>
+    func addReposUserData(from repos: [RepositoryEntity], username: String) -> Observable<Bool>
 }
 
 final class LocaleDataSource: NSObject {
@@ -27,6 +28,7 @@ final class LocaleDataSource: NSObject {
 }
 
 extension LocaleDataSource: LocaleDataSourceProtocol {
+    
     func getListSearchUser(query: String) -> RxSwift.Observable<RealmSwift.List<UserDetailEntity>> {
         
         
@@ -69,6 +71,39 @@ extension LocaleDataSource: LocaleDataSourceProtocol {
             return Disposables.create()
         }
     }
+    
+    func addReposUserData(from repos: [RepositoryEntity], username: String) -> RxSwift.Observable<Bool> {
+        return Observable<Bool>.create { observer in
+            if let realm = self.realm {
+                
+                let userRequest = realm.objects(UserDetailEntity.self).where {
+                    $0.login == username
+                }
+                
+                if let user = userRequest.first {
+                    do {
+                        try realm.write {
+                            let listRepo = List<RepositoryEntity>()
+                            listRepo.append(objectsIn: repos)
+                            user.repos = listRepo
+                        }
+                        observer.onNext(true)
+                        observer.onCompleted()
+                    } catch {
+                        observer.onError(DatabaseError.requestFailed)
+                    }
+                } else {
+                    observer.onError(DatabaseError.invalidInstance)
+                }
+            } else {
+                observer.onError(DatabaseError.invalidInstance)
+            }
+            
+            return Disposables.create()
+        }
+    }
+    
+    
 }
 
 extension Results {
