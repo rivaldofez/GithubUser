@@ -18,7 +18,7 @@ final class Injection: NSObject {
       return UserRepository.sharedInstance(locale, remote)
     }
     
-    func provideHomeViewModel() -> HomeViewModel {
+    func provideHomeViewModel() -> HomeViewModelProtocol {
         let repository = provideRepository()
         return HomeViewModel(repository: repository)
     }

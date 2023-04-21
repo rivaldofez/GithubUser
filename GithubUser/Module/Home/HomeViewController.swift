@@ -8,9 +8,33 @@
 import UIKit
 import RxSwift
 
-class HomeViewController: UIViewController {
+
+protocol HomeViewProtocol {
+    var viewModel: HomeViewModelProtocol? { get set }
     
-    private var viewModel: HomeViewModel = Injection.init().provideHomeViewModel()
+    func updateSearchUserList(with users: [User])
+    func updateSearchUserList(with error: String)
+    func isLoading(with state: Bool)
+}
+
+class HomeViewController: UIViewController, HomeViewProtocol {
+    var viewModel: HomeViewModelProtocol?
+    
+    
+    func updateSearchUserList(with users: [User]) {
+        print(users)
+        print("haiii")
+    }
+    
+    func updateSearchUserList(with error: String) {
+        print(error)
+    }
+    
+    func isLoading(with state: Bool) {
+        print(state)
+    }
+    
+    
     private let disposeBag = DisposeBag()
 
     private let searchController: UISearchController = {
@@ -59,15 +83,7 @@ class HomeViewController: UIViewController {
         
         configureConstraints()
         
-        
-        viewModel.getListSearchUser(query: "rivaldo")
-            .observe(on: MainScheduler.instance).subscribe { results in
-                print(results)
-            } onError: { error  in
-                print(error.localizedDescription)
-            } onCompleted: {
-                print("completed")
-            }.disposed(by: disposeBag)
+        viewModel?.getListSearchUser(query: "rivaldo")
     }
     
     private func configureConstraints(){

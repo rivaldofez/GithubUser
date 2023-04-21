@@ -20,6 +20,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         let mainVC = HomeViewController()
+        var mainVM = Injection.init().provideHomeViewModel()
+        
+        mainVC.viewModel = mainVM
+        mainVM.view = mainVC
+        
         let window = UIWindow(windowScene: windowScene)
         
         window.rootViewController = UINavigationController(rootViewController: mainVC)
