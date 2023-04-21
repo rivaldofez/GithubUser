@@ -24,6 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         mainVC.viewModel = mainVM
         mainVM.view = mainVC
+        mainVM.controller = mainVC
         
         let window = UIWindow(windowScene: windowScene)
         

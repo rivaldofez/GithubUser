@@ -136,5 +136,10 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let user = users[indexPath.item]
+        viewModel?.didSelectUser(with: user)
+    }
+    
     
 }

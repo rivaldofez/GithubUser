@@ -29,6 +29,7 @@
 		7ED92E5729F1D82100690195 /* UserCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED92E5629F1D82100690195 /* UserCollectionViewCell.swift */; };
 		7ED92E5A29F218A400690195 /* Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED92E5929F218A400690195 /* Injection.swift */; };
 		7ED92E5C29F218FC00690195 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED92E5B29F218FC00690195 /* HomeViewModel.swift */; };
+		7ED92E5F29F22A1300690195 /* DetailUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED92E5E29F22A1300690195 /* DetailUserViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +58,7 @@
 		7ED92E5629F1D82100690195 /* UserCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollectionViewCell.swift; sourceTree = "<group>"; };
 		7ED92E5929F218A400690195 /* Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injection.swift; sourceTree = "<group>"; };
 		7ED92E5B29F218FC00690195 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		7ED92E5E29F22A1300690195 /* DetailUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUserViewController.swift; sourceTree = "<group>"; };
 		D998DBE652EF07438DD222E6 /* Pods-GithubUser.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GithubUser.release.xcconfig"; path = "Target Support Files/Pods-GithubUser/Pods-GithubUser.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -216,6 +218,7 @@
 		7ED92E5229F1D57900690195 /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				7ED92E5D29F229FC00690195 /* Detail User */,
 				7ED92E5329F1D58100690195 /* Home */,
 			);
 			path = Module;
@@ -237,6 +240,14 @@
 				7ED92E5929F218A400690195 /* Injection.swift */,
 			);
 			path = Injection;
+			sourceTree = "<group>";
+		};
+		7ED92E5D29F229FC00690195 /* Detail User */ = {
+			isa = PBXGroup;
+			children = (
+				7ED92E5E29F22A1300690195 /* DetailUserViewController.swift */,
+			);
+			path = "Detail User";
 			sourceTree = "<group>";
 		};
 		F8B3185532DF63EDD673D979 /* Pods */ = {
@@ -368,6 +379,7 @@
 				7E6D706929F15A410043D2B0 /* UserListResponse.swift in Sources */,
 				7E6D706D29F15EFB0043D2B0 /* RemoteDataSource.swift in Sources */,
 				7E6D704D29F11A250043D2B0 /* ViewController.swift in Sources */,
+				7ED92E5F29F22A1300690195 /* DetailUserViewController.swift in Sources */,
 				7E6D707729F1839D0043D2B0 /* UserDetailEntity.swift in Sources */,
 				7E6D708229F195000043D2B0 /* UserMapper.swift in Sources */,
 				7E6D707F29F1947C0043D2B0 /* User.swift in Sources */,
