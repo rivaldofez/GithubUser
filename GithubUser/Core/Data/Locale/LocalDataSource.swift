@@ -40,10 +40,8 @@ extension LocaleDataSource: LocaleDataSourceProtocol {
                     realm.objects(SearchDataEntity.self)
                         .where { $0.query == query }
                 }()
-                
                 observer.onNext(searchDataUsers.toArray(ofType: SearchDataEntity.self).first?.users ?? List())
                 observer.onCompleted()
-                
             } else {
                 observer.onError(DatabaseError.invalidInstance)
             }

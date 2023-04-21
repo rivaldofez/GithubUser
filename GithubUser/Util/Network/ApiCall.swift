@@ -22,6 +22,7 @@ enum Endpoints {
         case searchUser(query: String)
         case detailUser(username: String)
         case reposUser(username: String)
+        case defaultList
         
         var url: String {
             switch self {
@@ -31,6 +32,8 @@ enum Endpoints {
                 return "\(API.baseURL)search/users?q=\(query)"
             case .reposUser(username: let username):
                 return "\(API.baseURL)users/\(username)/repos"
+            case .defaultList:
+                return "\(API.baseURL)users"
             }
         }
     }

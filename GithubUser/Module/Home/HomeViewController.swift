@@ -84,10 +84,13 @@ class HomeViewController: UIViewController, HomeViewProtocol {
             self.users.append(contentsOf: users)
             self.userCollectionView.reloadData()
         }
+        
+        print(users)
     }
     
     func updateSearchUserList(with error: String) {
         self.users.removeAll()
+        print(error)
     }
     
     func isLoading(with state: Bool) {

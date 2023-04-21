@@ -32,7 +32,7 @@ extension RemoteDataSource: RemoteDataSourceProtocol {
         return Observable<[UserDetailResponse]>.create { observer in
             self.getSearchUser(query: query).subscribe { userPageResponse in
                 var userObservables: [Observable<UserDetailResponse>] = []
-                
+
                 for userItem in userPageResponse {
                     userObservables.append(self.getDetailUser(username: userItem.login))
                 }
@@ -40,17 +40,11 @@ extension RemoteDataSource: RemoteDataSourceProtocol {
                 Observable.zip(userObservables)
                     .subscribe { detailResponses in
                         observer.onNext(detailResponses)
-                    } onError: { _ in
+                    } onError: { error in
                         observer.onError(URLError.invalidResponse)
                     } onCompleted: {
                         observer.onCompleted()
                     }.disposed(by: self.disposeBag)
-                
-                
-            } onError: { _ in
-                observer.onError(URLError.invalidResponse)
-            } onCompleted: {
-                observer.onCompleted()
             }.disposed(by: self.disposeBag)
             
             return Disposables.create()
@@ -68,7 +62,10 @@ extension RemoteDataSource: RemoteDataSourceProtocol {
     
     func getSearchUser(query: String) -> RxSwift.Observable<[UserResponse]> {
         return Observable<[UserResponse]>.create { observer in
-            if let url = URL(string: Endpoints.Gets.searchUser(query: query).url){
+            let initUrl = query.isEmpty ? Endpoints.Gets.defaultList.url :
+            Endpoints.Gets.searchUser(query: query).url
+            
+            if let url = URL(string: initUrl){
                 self.requestGet(url: url)
                     .responseDecodable(of: UserListResponse.self) { response in
                         
