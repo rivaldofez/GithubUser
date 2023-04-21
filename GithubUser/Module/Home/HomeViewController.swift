@@ -20,14 +20,19 @@ protocol HomeViewProtocol {
 class HomeViewController: UIViewController, HomeViewProtocol {
     var viewModel: HomeViewModelProtocol?
     
+    private var users: [User] = []
+    
     
     func updateSearchUserList(with users: [User]) {
-        print(users)
-        print("haiii")
+        DispatchQueue.main.async {
+            self.users.removeAll()
+            self.users.append(contentsOf: users)
+            self.userCollectionView.reloadData()
+        }
     }
     
     func updateSearchUserList(with error: String) {
-        print(error)
+        self.users.removeAll()
     }
     
     func isLoading(with state: Bool) {
@@ -54,11 +59,19 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         let layout = UICollectionViewFlowLayout()
         
         layout.scrollDirection = .vertical
-        layout.itemSize = CGSize(width: view.frame.size.width, height: 150)
+        layout.itemSize = CGSize(width: view.frame.size.width, height: 120)
+        layout.minimumLineSpacing = 0
+        layout.minimumInteritemSpacing = 0
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(UserCollectionViewCell.self, forCellWithReuseIdentifier: UserCollectionViewCell.identifier)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+        
+        collectionView.layer.cornerRadius = 12
+        collectionView.layer.masksToBounds = false
+        collectionView.clipsToBounds = true
+        collectionView.backgroundColor = .gray
+        collectionView.showsVerticalScrollIndicator = false
         
         return collectionView
     }()
@@ -88,9 +101,9 @@ class HomeViewController: UIViewController, HomeViewProtocol {
     
     private func configureConstraints(){
         let userCollectionViewCellConstraints = [
-            userCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            userCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            userCollectionView.topAnchor.constraint(equalTo: view.topAnchor),
+            userCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            userCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            userCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             userCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ]
         
@@ -101,18 +114,24 @@ class HomeViewController: UIViewController, HomeViewProtocol {
 extension HomeViewController: UISearchBarDelegate {
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        print("did end")
+        if let query = searchBar.text {
+            viewModel?.getListSearchUser(query: query)
+        }
     }
     
 }
 
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return users.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UserCollectionViewCell.identifier, for: indexPath) as? UserCollectionViewCell else { return UICollectionViewCell() }
+        
+        cell.configure(with: users[indexPath.item])
+        
+
         
         return cell
     }

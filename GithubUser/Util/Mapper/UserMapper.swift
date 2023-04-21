@@ -93,19 +93,48 @@ final class UserMapper {
         
     }
     
-    static func mapUserEntitiesToDomain(
-        input userEntities: List<UserEntity>
-    ) -> [User] {
-        return userEntities.map { source in
-            return User(id: source.id, login: source.login)
-        }
-    }
     
     static func mapUserDetailEntitiesToDomain(
         input userEntities: List<UserDetailEntity>
     ) -> [User] {
         return userEntities.map { source in
-            return User(id: source.id, login: source.login)
+            return User(
+                login: source.login,
+                id: source.id,
+                nodeID: source.nodeID,
+                avatarURL: source.avatarURL,
+                gravatarID: source.gravatarID,
+                url: source.url,
+                htmlURL: source.htmlURL,
+                followersURL: source.followersURL,
+                followingURL: source.followingURL,
+                gistsURL: source.gistsURL,
+                starredURL: source.starredURL,
+                subscriptionURL: source.subscriptionURL,
+                organizationURL: source.organizationURL,
+                reposURL: source.reposURL,
+                eventsURL: source.eventsURL,
+                receivedURL: source.receivedURL,
+                type: source.type,
+                siteAdmin: source.siteAdmin,
+                name: source.name,
+                company: source.company,
+                location: source.location,
+                email: source.email,
+                bio: source.bio,
+                twitterUsername: source.twitterUsername,
+                publicRepos: source.publicRepos,
+                publicGits: source.publicGits,
+                followers: source.followers,
+                following: source.following,
+                createdAt: source.createdAt,
+                updatedAt: source.updatedAt,
+                privateGist: source.privateGist,
+                totalPrivateRepos: source.totalPrivateRepos,
+                ownedPrivateRepos: source.ownedPrivateRepos,
+                diskUsage: source.diskUsage,
+                collaborators: source.collaborators,
+                twoFactorAuthentication: source.twoFactorAuthentication)
         }
     }
 }
