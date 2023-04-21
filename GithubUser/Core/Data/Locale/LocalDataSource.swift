@@ -29,28 +29,20 @@ final class LocaleDataSource: NSObject {
 extension LocaleDataSource: LocaleDataSourceProtocol {
     func getListSearchUser(query: String) -> RxSwift.Observable<RealmSwift.List<UserDetailEntity>> {
         
-        print("called 1")
         
         return Observable<List<UserDetailEntity>>.create { observer in
             if let realm = self.realm {
-                print("called 2")
                 
                 let searchDataUsers: Results<SearchDataEntity> = {
                     realm.objects(SearchDataEntity.self)
                         .where { $0.query == query }
                 }()
-                print("called 3")
-                
                 
                 observer.onNext(searchDataUsers.toArray(ofType: SearchDataEntity.self).first?.users ?? List())
                 observer.onCompleted()
                 
-                print("called 4")
-                
             } else {
                 observer.onError(DatabaseError.invalidInstance)
-                print("called 5")
-                
             }
             
             return Disposables.create()
@@ -58,30 +50,7 @@ extension LocaleDataSource: LocaleDataSourceProtocol {
         
     }
     
-//    func getSearchUser(query: String) -> RxSwift.Observable<List<UserEntity>> {
-//        return Observable<List<UserEntity>>.create { observer in
-//            if let realm = self.realm {
-//                let searchDataUsers: Results<SearchDataEntity> = {
-//                    realm.objects(SearchDataEntity.self)
-//                        .where {
-//                            $0.query == query
-//                        }
-//
-//                }()
-//                observer.onNext(searchDataUsers.toArray(ofType: SearchDataEntity.self).first?.users ?? List())
-//                observer.onCompleted()
-//            } else {
-//                observer.onError(DatabaseError.invalidInstance)
-//            }
-//
-//            return Disposables.create()
-//        }
-//    }
-    
     func addSearchUserData(from searchData: SearchDataEntity) -> RxSwift.Observable<Bool> {
-        
-        print("added")
-        
         return Observable<Bool>.create { observer in
             if let realm = self.realm {
                 do {
@@ -100,8 +69,6 @@ extension LocaleDataSource: LocaleDataSourceProtocol {
             return Disposables.create()
         }
     }
-    
-    
 }
 
 extension Results {

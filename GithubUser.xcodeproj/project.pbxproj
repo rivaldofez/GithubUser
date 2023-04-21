@@ -32,6 +32,7 @@
 		7ED92E5F29F22A1300690195 /* DetailUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED92E5E29F22A1300690195 /* DetailUserViewController.swift */; };
 		7ED92E6129F235F900690195 /* RepositoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED92E6029F235F900690195 /* RepositoryTableViewCell.swift */; };
 		7ED92E6329F23F3200690195 /* RepositoryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED92E6229F23F3200690195 /* RepositoryResponse.swift */; };
+		7ED92E6529F241E800690195 /* RepositoryEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED92E6429F241E800690195 /* RepositoryEntity.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +64,7 @@
 		7ED92E5E29F22A1300690195 /* DetailUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUserViewController.swift; sourceTree = "<group>"; };
 		7ED92E6029F235F900690195 /* RepositoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryTableViewCell.swift; sourceTree = "<group>"; };
 		7ED92E6229F23F3200690195 /* RepositoryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryResponse.swift; sourceTree = "<group>"; };
+		7ED92E6429F241E800690195 /* RepositoryEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryEntity.swift; sourceTree = "<group>"; };
 		D998DBE652EF07438DD222E6 /* Pods-GithubUser.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GithubUser.release.xcconfig"; path = "Target Support Files/Pods-GithubUser/Pods-GithubUser.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -192,6 +194,7 @@
 				7E6D707129F17EF50043D2B0 /* UserEntity.swift */,
 				7E6D707629F1839D0043D2B0 /* UserDetailEntity.swift */,
 				7E6D707829F18C490043D2B0 /* SearchDataEntity.swift */,
+				7ED92E6429F241E800690195 /* RepositoryEntity.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -385,6 +388,7 @@
 				7E6D707529F17F110043D2B0 /* LocalDataSource.swift in Sources */,
 				7E6D706929F15A410043D2B0 /* UserListResponse.swift in Sources */,
 				7E6D706D29F15EFB0043D2B0 /* RemoteDataSource.swift in Sources */,
+				7ED92E6529F241E800690195 /* RepositoryEntity.swift in Sources */,
 				7E6D704D29F11A250043D2B0 /* ViewController.swift in Sources */,
 				7ED92E5F29F22A1300690195 /* DetailUserViewController.swift in Sources */,
 				7E6D707729F1839D0043D2B0 /* UserDetailEntity.swift in Sources */,
