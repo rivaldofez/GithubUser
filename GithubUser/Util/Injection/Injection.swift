@@ -22,4 +22,9 @@ final class Injection: NSObject {
         let repository = provideRepository()
         return HomeViewModel(repository: repository)
     }
+    
+    func provideDetailViewModel() -> DetailUserViewModelProtocol {
+        let repository = provideRepository()
+        return DetailUserViewModel(repository: repository)
+    }
 }

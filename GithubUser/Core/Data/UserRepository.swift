@@ -10,6 +10,7 @@ import RxSwift
 
 protocol UserRepositoryProtocol {
     func getListSearchUser(query: String) -> Observable<[User]>
+    func getListRepoUser(username: String) -> Observable<[Repository]>
 }
 
 final class UserRepository: NSObject {
@@ -29,14 +30,39 @@ final class UserRepository: NSObject {
 }
 
 extension UserRepository: UserRepositoryProtocol {
-
+    func getListRepoUser(username: String) -> RxSwift.Observable<[Repository]> {
+        return self.locale.getListRepository(username: username)
+            .map { return UserMapper.mapRepositoryEntitiesToDomain(input: $0)
+                
+            }
+            .filter { !$0.isEmpty }
+            .ifEmpty(switchTo: self.remote.getListRepoUser(username: username)
+                .map {
+                    return UserMapper.mapRepositoryResponseToEntities(input: $0)
+                }
+                .flatMap {
+                    let repoUserData = RepositoryDataEntity()
+                    repoUserData.username = username
+                    repoUserData.repos = $0
+                    
+                    return self.locale.addReposUserData(from: repoUserData)
+                }
+                .filter { $0 }
+                .flatMap{ _ in self.locale.getListRepository(username: username)
+                        .map {
+                            UserMapper.mapRepositoryEntitiesToDomain(input: $0)
+                        }
+                }
+            )
+    }
+    
+    
     func getListSearchUser(query: String) -> Observable<[User]> {
         return self.locale.getListSearchUser(query: query)
             .map {
-                print($0.count)
-                 return UserMapper.mapUserDetailEntitiesToDomain(input: $0)
+                return UserMapper.mapUserDetailEntitiesToDomain(input: $0)
             }
-            .filter { $0.count != 0 }
+            .filter { !$0.isEmpty }
             .ifEmpty(switchTo: self.remote.getListSearchUser(query: query)
                 .map {
                     return UserMapper.mapUserDetailResponseToEntities(input: $0) }
@@ -53,5 +79,7 @@ extension UserRepository: UserRepositoryProtocol {
                      
             )
     }
+    
+    
 }
 

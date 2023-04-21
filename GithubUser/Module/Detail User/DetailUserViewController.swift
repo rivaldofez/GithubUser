@@ -7,7 +7,29 @@
 
 import UIKit
 
-class DetailUserViewController: UIViewController {
+protocol DetailUserViewProtocol {
+    var viewModel: DetailUserViewModelProtocol? { get set }
+    
+    func updateListRepo(with repos: [Repository])
+    func updateListRepo(with error: String)
+    func isLoading(with state: Bool)
+}
+
+class DetailUserViewController: UIViewController, DetailUserViewProtocol {
+    var viewModel: DetailUserViewModelProtocol?
+    
+    func updateListRepo(with repos: [Repository]) {
+        print(repos)
+    }
+    
+    func updateListRepo(with error: String) {
+        print(error)
+    }
+    
+    func isLoading(with state: Bool) {
+        print(state)
+    }
+    
     
     private let userAvatarImageView: UIImageView = {
         let imageview = UIImageView()
@@ -151,6 +173,8 @@ class DetailUserViewController: UIViewController {
         
         repositoryTableView.delegate = self
         repositoryTableView.dataSource = self
+        
+        viewModel?.getListRepo(username: "rivaldofez")
     }
     
     

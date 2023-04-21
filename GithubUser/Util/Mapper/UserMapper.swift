@@ -10,6 +10,30 @@ import RealmSwift
 
 final class UserMapper {
     
+    static func mapRepositoryResponseToEntities (
+        input repositoryResponses: [RepositoryResponse]
+    ) -> List<RepositoryItemEntity> {
+        let repositories = List<RepositoryItemEntity>()
+        repositories.append(objectsIn: repositoryResponses.map { source in
+            let newRepoEntity = RepositoryItemEntity()
+            newRepoEntity.id = source.id ?? 0
+            newRepoEntity.name = source.name ?? ""
+            newRepoEntity.desc = source.description ?? ""
+            newRepoEntity.fullName = source.fullName ?? ""
+            newRepoEntity.nodeID = source.nodeID ?? ""
+            newRepoEntity.stargazersCount = source.stargazersCount ?? 0
+            newRepoEntity.watchersCount = source.watchersCount ?? 0
+            newRepoEntity.forksCount = source.forksCount ?? 0
+            newRepoEntity.updatedAt = source.updatedAt ?? ""
+            
+            return newRepoEntity
+        })
+        
+        return repositories
+    }
+    
+
+    
     static func mapUserDetailResponseToEntities(
     
         input userDetailResponses: [UserDetailResponse]
@@ -93,6 +117,15 @@ final class UserMapper {
         
     }
     
+
+    static func mapRepositoryEntitiesToDomain(
+        input repositoryEntities: List<RepositoryItemEntity>
+    ) -> [Repository] {
+        return repositoryEntities.map { source in
+            return Repository(id: source.id, nodeID: source.nodeID, name: source.name, fullName: source.fullName, desc: source.desc, stargazersCount: source.stargazersCount, watchersCount: source.watchersCount, forksCount: source.forksCount, updatedAt: source.updatedAt)
+        }
+    }
+
     
     static func mapUserDetailEntitiesToDomain(
         input userEntities: List<UserDetailEntity>

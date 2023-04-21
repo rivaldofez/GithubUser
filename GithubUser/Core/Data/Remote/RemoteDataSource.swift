@@ -106,7 +106,6 @@ extension RemoteDataSource: RemoteDataSourceProtocol {
                         case .success(let value) :
                             observer.onNext(value)
                             observer.onCompleted()
-                            
                         case .failure:
                             observer.onError(URLError.invalidResponse)
                         }
@@ -119,11 +118,8 @@ extension RemoteDataSource: RemoteDataSourceProtocol {
     func getDetailUser(username: String) -> RxSwift.Observable<UserDetailResponse> {
         return Observable<UserDetailResponse>.create { observer in
             if let url = URL(string: Endpoints.Gets.detailUser(username: username).url) {
-//                print(url)
-                
                 self.requestGet(url: url)
                     .responseDecodable(of: UserDetailResponse.self) { response in
-//                        print(response)
                         
                         switch (response.result) {
                             

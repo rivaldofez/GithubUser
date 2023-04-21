@@ -8,15 +8,26 @@
 import Foundation
 import RealmSwift
 
-class RepositoryEntity: Object {
+
+class RepositoryDataEntity: Object {
+    @Persisted var username: String = ""
+    @Persisted var repos: List<RepositoryItemEntity> = List()
+    
+    override static func primaryKey() -> String? {
+        return "username"
+    }
+}
+
+class RepositoryItemEntity: Object {
     @Persisted var id: Int = 0
     @Persisted var nodeID: String = ""
     @Persisted var name: String  = ""
     @Persisted var fullName: String = ""
     @Persisted var desc: String = ""
     @Persisted var stargazersCount: Int = 0
-    @Persisted var varwatchersCount: Int = 0
+    @Persisted var watchersCount: Int = 0
     @Persisted var forksCount: Int = 0
+    @Persisted var updatedAt: String = ""
     
     override static func primaryKey() -> String? {
         return "id"

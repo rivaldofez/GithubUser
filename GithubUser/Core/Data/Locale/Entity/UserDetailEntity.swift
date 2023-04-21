@@ -44,7 +44,6 @@ class UserDetailEntity: Object {
     @Persisted var diskUsage: Int = 0
     @Persisted var collaborators: Int = 0
     @Persisted var twoFactorAuthentication: Bool = false
-    @Persisted var repos: List<RepositoryEntity> = List()
     
     override static func primaryKey() -> String? {
         return "id"

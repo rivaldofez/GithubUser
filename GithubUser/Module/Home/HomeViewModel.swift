@@ -57,7 +57,13 @@ class HomeViewModel: HomeViewModelProtocol {
     }
     
     func didSelectUser(with user: User){
-        controller?.navigationController?.pushViewController(DetailUserViewController(), animated: true)
+        let vc = DetailUserViewController()
+        var vm = Injection.init().provideDetailViewModel()
+        
+        vc.viewModel = vm
+        vm.view = vc
+        
+        controller?.navigationController?.pushViewController(vc, animated: true)
         
     }
 }

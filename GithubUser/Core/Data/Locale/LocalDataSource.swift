@@ -12,7 +12,9 @@ import RxSwift
 protocol LocaleDataSourceProtocol: AnyObject {
     func getListSearchUser(query: String) -> Observable<List<UserDetailEntity>>
     func addSearchUserData(from searchData: SearchDataEntity) ->  Observable<Bool>
-    func addReposUserData(from repos: [RepositoryEntity], username: String) -> Observable<Bool>
+    func getListRepository(username: String) -> Observable<List<RepositoryItemEntity>>
+    func addReposUserData(from repoData: RepositoryDataEntity) -> Observable<Bool>
+    
 }
 
 final class LocaleDataSource: NSObject {
@@ -28,7 +30,6 @@ final class LocaleDataSource: NSObject {
 }
 
 extension LocaleDataSource: LocaleDataSourceProtocol {
-    
     func getListSearchUser(query: String) -> RxSwift.Observable<RealmSwift.List<UserDetailEntity>> {
         
         
@@ -52,6 +53,24 @@ extension LocaleDataSource: LocaleDataSourceProtocol {
         
     }
     
+    func getListRepository(username: String) -> RxSwift.Observable<RealmSwift.List<RepositoryItemEntity>> {
+        
+        return Observable<List<RepositoryItemEntity>>.create { observer in
+            if let realm = self.realm {
+                let repoDataUser: Results<RepositoryDataEntity> = {
+                    realm.objects(RepositoryDataEntity.self)
+                        .where { $0.username == username }
+                }()
+                
+                observer.onNext(repoDataUser.toArray(ofType: RepositoryDataEntity.self).first?.repos ?? List())
+                observer.onCompleted()
+            } else {
+                observer.onError(DatabaseError.invalidInstance)
+            }
+            return Disposables.create()
+        }
+    }
+    
     func addSearchUserData(from searchData: SearchDataEntity) -> RxSwift.Observable<Bool> {
         return Observable<Bool>.create { observer in
             if let realm = self.realm {
@@ -72,37 +91,57 @@ extension LocaleDataSource: LocaleDataSourceProtocol {
         }
     }
     
-    func addReposUserData(from repos: [RepositoryEntity], username: String) -> RxSwift.Observable<Bool> {
+    func addReposUserData(from repoData: RepositoryDataEntity) -> RxSwift.Observable<Bool> {
         return Observable<Bool>.create { observer in
             if let realm = self.realm {
-                
-                let userRequest = realm.objects(UserDetailEntity.self).where {
-                    $0.login == username
-                }
-                
-                if let user = userRequest.first {
-                    do {
-                        try realm.write {
-                            let listRepo = List<RepositoryEntity>()
-                            listRepo.append(objectsIn: repos)
-                            user.repos = listRepo
-                        }
-                        observer.onNext(true)
-                        observer.onCompleted()
-                    } catch {
-                        observer.onError(DatabaseError.requestFailed)
+                do {
+                    try realm.write {
+                        realm.add(repoData, update: .all)
                     }
-                } else {
-                    observer.onError(DatabaseError.invalidInstance)
+                    
+                    observer.onNext(true)
+                    observer.onCompleted()
+                } catch {
+                    observer.onError(DatabaseError.requestFailed)
                 }
             } else {
                 observer.onError(DatabaseError.invalidInstance)
             }
-            
             return Disposables.create()
         }
     }
     
+//    func addReposUserData(from repos: [RepositoryEntity], username: String) -> RxSwift.Observable<Bool> {
+//        return Observable<Bool>.create { observer in
+//            if let realm = self.realm {
+//
+//                let userRequest = realm.objects(UserDetailEntity.self).where {
+//                    $0.login == username
+//                }
+//
+//                if let user = userRequest.first {
+//                    do {
+//                        try realm.write {
+//                            let listRepo = List<RepositoryEntity>()
+//                            listRepo.append(objectsIn: repos)
+//                            user.repos = listRepo
+//                        }
+//                        observer.onNext(true)
+//                        observer.onCompleted()
+//                    } catch {
+//                        observer.onError(DatabaseError.requestFailed)
+//                    }
+//                } else {
+//                    observer.onError(DatabaseError.invalidInstance)
+//                }
+//            } else {
+//                observer.onError(DatabaseError.invalidInstance)
+//            }
+//
+//            return Disposables.create()
+//        }
+//    }
+//
     
 }
 
