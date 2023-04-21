@@ -13,12 +13,24 @@ protocol DetailUserViewProtocol {
     func updateListRepo(with repos: [Repository])
     func updateListRepo(with error: String)
     func isLoading(with state: Bool)
+    
+    func configure(with user: User)
+    
+    
 }
 
 class DetailUserViewController: UIViewController, DetailUserViewProtocol {
     var viewModel: DetailUserViewModelProtocol?
     
+    private var repos: [Repository] = []
+    
     func updateListRepo(with repos: [Repository]) {
+        DispatchQueue.main.async {
+            self.repos.removeAll()
+            self.repos.append(contentsOf: repos)
+            self.repositoryTableView.reloadData()
+        }
+        
         print(repos)
     }
     
@@ -37,7 +49,7 @@ class DetailUserViewController: UIViewController, DetailUserViewProtocol {
         imageview.image = UIImage(systemName: "person")
         
         imageview.layer.masksToBounds = false
-        imageview.layer.cornerRadius = 20
+        imageview.layer.cornerRadius = 35
         imageview.clipsToBounds = true
         
         return imageview
@@ -116,6 +128,10 @@ class DetailUserViewController: UIViewController, DetailUserViewProtocol {
         let imageview = UIImageView()
         let config = UIImage.SymbolConfiguration(textStyle: .body)
         imageview.translatesAutoresizingMaskIntoConstraints = false
+        imageview.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        imageview.contentMode = .scaleAspectFit
+        imageview.tintColor = .secondaryLabel
+        
         
         imageview.image = UIImage(systemName: "person.3", withConfiguration: config)
         return imageview
@@ -125,6 +141,9 @@ class DetailUserViewController: UIViewController, DetailUserViewProtocol {
         let imageview = UIImageView()
         let config = UIImage.SymbolConfiguration(textStyle: .body)
         imageview.translatesAutoresizingMaskIntoConstraints = false
+        imageview.widthAnchor.constraint(equalToConstant: 10).isActive = true
+        imageview.contentMode = .scaleAspectFit
+        imageview.tintColor = .secondaryLabel
         
         imageview.image = UIImage(systemName: "circle.fill", withConfiguration: config)
         return imageview
@@ -134,6 +153,9 @@ class DetailUserViewController: UIViewController, DetailUserViewProtocol {
         let imageview = UIImageView()
         let config = UIImage.SymbolConfiguration(textStyle: .body)
         imageview.translatesAutoresizingMaskIntoConstraints = false
+        imageview.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        imageview.contentMode = .scaleAspectFit
+        imageview.tintColor = .secondaryLabel
         
         imageview.image = UIImage(systemName: "mappin", withConfiguration: config)
         return imageview
@@ -143,6 +165,9 @@ class DetailUserViewController: UIViewController, DetailUserViewProtocol {
         let imageview = UIImageView()
         let config = UIImage.SymbolConfiguration(textStyle: .body)
         imageview.translatesAutoresizingMaskIntoConstraints = false
+        imageview.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        imageview.contentMode = .scaleAspectFit
+        imageview.tintColor = .secondaryLabel
         
         imageview.image = UIImage(systemName: "envelope", withConfiguration: config)
         return imageview
@@ -169,19 +194,35 @@ class DetailUserViewController: UIViewController, DetailUserViewProtocol {
         view.addSubview(emailLabel)
         view.addSubview(repositoryTableView)
         
+        navigationController?.navigationBar.prefersLargeTitles = false
+        title = viewModel?.user?.login ?? ""
+        navigationController?.navigationBar.tintColor = .label
+        
         configureConstraints()
         
         repositoryTableView.delegate = self
         repositoryTableView.dataSource = self
         
-        viewModel?.getListRepo(username: "rivaldofez")
+    }
+    
+    func configure(with user: User){
+        guard let avatarURL = URL(string: user.avatarURL) else { return }
+        userAvatarImageView.sd_setImage(with: avatarURL)
+        
+        nameLabel.text = user.name.isEmpty ? "-" : user.name
+        usernameLabel.text = user.login.isEmpty ? "-" : user.login
+        bioLabel.text = user.bio.isEmpty ? "-" : user.bio
+        followersLabel.text = "\(user.followers) Followers"
+        followersLabel.text = "\(user.following) Following"
+        regionLabel.text = user.location.isEmpty ? "-" : user.location
+        emailLabel.text = user.email.isEmpty ? "-" : user.email
     }
     
     
     private func configureConstraints(){
         let userAvatarImageViewConstraints = [
             userAvatarImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            userAvatarImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            userAvatarImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 32),
             userAvatarImageView.widthAnchor.constraint(equalToConstant: 70),
             userAvatarImageView.heightAnchor.constraint(equalToConstant: 70)
         ]
@@ -198,7 +239,8 @@ class DetailUserViewController: UIViewController, DetailUserViewProtocol {
         
         let bioLabelConstraints = [
             bioLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
-            bioLabel.topAnchor.constraint(equalTo: usernameLabel.bottomAnchor, constant: 16)
+            bioLabel.topAnchor.constraint(equalTo: usernameLabel.bottomAnchor, constant: 16),
+            bioLabel.trailingAnchor.constraint(lessThanOrEqualTo: view.trailingAnchor, constant: -16)
             
         ]
         
@@ -208,18 +250,18 @@ class DetailUserViewController: UIViewController, DetailUserViewProtocol {
         ]
         
         let followersLabelConstraints = [
-            followersLabel.leadingAnchor.constraint(equalTo: followersIcon.trailingAnchor, constant: 8),
+            followersLabel.leadingAnchor.constraint(equalTo: followersIcon.trailingAnchor, constant: 4),
             followersLabel.topAnchor.constraint(equalTo: followersIcon.topAnchor),
             followersLabel.bottomAnchor.constraint(equalTo: followersIcon.bottomAnchor)
         ]
         
         let followingIconConstraints = [
-            followingIcon.leadingAnchor.constraint(equalTo: followersLabel.trailingAnchor, constant: 16),
+            followingIcon.leadingAnchor.constraint(equalTo: followersLabel.trailingAnchor, constant: 8),
             followingIcon.topAnchor.constraint(equalTo: bioLabel.bottomAnchor, constant: 16)
         ]
         
         let followingLabelConstraints = [
-            followingLabel.leadingAnchor.constraint(equalTo: followingIcon.trailingAnchor, constant: 8),
+            followingLabel.leadingAnchor.constraint(equalTo: followingIcon.trailingAnchor, constant: 4),
             followingLabel.topAnchor.constraint(equalTo: followingIcon.topAnchor),
             followingLabel.bottomAnchor.constraint(equalTo: followingIcon.bottomAnchor)
         
@@ -273,17 +315,19 @@ class DetailUserViewController: UIViewController, DetailUserViewProtocol {
 
 extension DetailUserViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return repos.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: RepositoryTableViewCell.identifier, for: indexPath) as? RepositoryTableViewCell else { return UITableViewCell()}
         
+        cell.configure(with: repos[indexPath.row], avaURL: viewModel?.user?.avatarURL ?? "")
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 120
+        return 130
     }
     
     

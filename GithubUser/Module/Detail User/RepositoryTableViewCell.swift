@@ -79,6 +79,15 @@ class RepositoryTableViewCell: UITableViewCell {
         configureConstraints()
     }
     
+    func configure(with repo: Repository, avaURL: String){
+        nameLabel.text = repo.name.isEmpty ? "-" : repo.name
+        bioLabel.text = repo.desc.isEmpty ? "-" : repo.desc
+        starLabel.text = "\(repo.stargazersCount)"
+        
+        guard let avatarURL = URL(string: avaURL) else { return }
+        userAvatarImageView.sd_setImage(with: avatarURL)
+    }
+    
     private func configureConstraints(){
         let userAvatarImageViewConstraints = [
             userAvatarImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
@@ -89,12 +98,14 @@ class RepositoryTableViewCell: UITableViewCell {
         
         let nameLabelConstraints = [
             nameLabel.leadingAnchor.constraint(equalTo: userAvatarImageView.trailingAnchor, constant: 16),
-            nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16)
+            nameLabel.trailingAnchor.constraint(lessThanOrEqualTo: contentView.trailingAnchor, constant: -16),
+            nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8)
         ]
         
         let bioLabelConstraints = [
             bioLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
-            bioLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 16),
+            bioLabel.trailingAnchor.constraint(lessThanOrEqualTo: contentView.trailingAnchor, constant: -16),
+            bioLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 8),
         ]
         
         let starIconConstraints = [
@@ -104,7 +115,7 @@ class RepositoryTableViewCell: UITableViewCell {
         ]
         
         let starLabelConstraints = [
-            starLabel.leadingAnchor.constraint(equalTo: starIcon.trailingAnchor, constant: 8),
+            starLabel.leadingAnchor.constraint(equalTo: starIcon.trailingAnchor, constant: 4),
             starLabel.topAnchor.constraint(equalTo: starIcon.topAnchor),
             starLabel.bottomAnchor.constraint(equalTo: starIcon.bottomAnchor)
         ]

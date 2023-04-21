@@ -68,7 +68,7 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         collectionView.layer.cornerRadius = 12
         collectionView.layer.masksToBounds = false
         collectionView.clipsToBounds = true
-        collectionView.backgroundColor = .gray
+        collectionView.backgroundColor = .gray.withAlphaComponent(0.05)
         collectionView.showsVerticalScrollIndicator = false
         
         return collectionView

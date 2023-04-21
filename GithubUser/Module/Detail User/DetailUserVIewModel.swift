@@ -13,15 +13,27 @@ protocol DetailUserViewModelProtocol {
     var view: DetailUserViewProtocol? { get set }
     var username: String { get set }
     var isLoading: Bool { get set }
+    var user: User? { get set }
     
     func getListRepo(username: String)
     
 }
 
 class DetailUserViewModel: DetailUserViewModelProtocol {
+    var user: User? {
+        didSet {
+            if let user = user {
+                self.view?.configure(with: user)
+                self.getListRepo(username: user.login)
+            }
+        }
+    }
+    
     var view: DetailUserViewProtocol?
     
     var username: String = ""
+    
+   
     
     var isLoading: Bool = false
     
