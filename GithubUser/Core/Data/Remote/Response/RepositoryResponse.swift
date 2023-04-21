@@ -14,7 +14,7 @@ struct RepositoryResponse: Codable {
     let stargazersCount, watchersCount: Int?
     let forksCount: Int?
     let updatedAt: String?
-
+    
     enum CodingKeys: String, CodingKey {
         case id
         case nodeID = "node_id"

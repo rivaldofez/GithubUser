@@ -51,7 +51,7 @@ class UserCollectionViewCell: UICollectionViewCell {
     }()
     
     private let regionLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.text = "Bandar Lampung, Indonesia"
         label.translatesAutoresizingMaskIntoConstraints = false
         
@@ -86,7 +86,7 @@ class UserCollectionViewCell: UICollectionViewCell {
             userAvatarImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
             userAvatarImageView.widthAnchor.constraint(equalToConstant: 40),
             userAvatarImageView.heightAnchor.constraint(equalToConstant: 40)
-        
+            
         ]
         
         let nameLabelConstraints = [
@@ -102,7 +102,7 @@ class UserCollectionViewCell: UICollectionViewCell {
         ]
         
         let bioLabelConstraints = [
-        
+            
             bioLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
             bioLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 12),
             bioLabel.trailingAnchor.constraint(lessThanOrEqualTo: contentView.trailingAnchor, constant: -32)

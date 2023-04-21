@@ -64,7 +64,6 @@ class HomeViewModel: HomeViewModelProtocol {
         vm.view = vc
         vm.user = user
         
-        
         controller?.navigationController?.pushViewController(vc, animated: true)
         
     }

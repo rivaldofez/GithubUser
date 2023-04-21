@@ -33,8 +33,6 @@ class DetailUserViewModel: DetailUserViewModelProtocol {
     
     var username: String = ""
     
-   
-    
     var isLoading: Bool = false
     
     private let disposeBag = DisposeBag()

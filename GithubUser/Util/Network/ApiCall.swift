@@ -12,7 +12,6 @@ struct API {
     static let token = "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"
 }
 
-
 protocol Endpoint {
     var url: String { get }
 }
@@ -21,8 +20,6 @@ protocol Endpoint {
 enum Endpoints {
     enum Gets: Endpoint {
         case searchUser(query: String)
-        case following(username: String)
-        case follower(username: String)
         case detailUser(username: String)
         case reposUser(username: String)
         
@@ -32,36 +29,9 @@ enum Endpoints {
                 return "\(API.baseURL)users/\(username)"
             case .searchUser(let query):
                 return "\(API.baseURL)search/users?q=\(query)"
-            case .follower(let username):
-                return "\(API.baseURL)users/\(username)/followers"
-            case .following(let username):
-                return "\(API.baseURL)users/\(username)/following"
             case .reposUser(username: let username):
                 return "\(API.baseURL)users/\(username)/repos"
             }
         }
     }
 }
-
-
-//interface RetrofitService {
-//
-//    @GET("search/users")
-//    fun searchUsers(
-//        @Header("Authorization") token : String,
-//        @Query("q") keyword: String
-//    ): Call<UserList>
-//
-//    @GET("users/{username}")
-//    fun getDetailUser(
-//        @Header("Authorization") token: String,
-//        @Path("username") username: String
-//    ):Call<DetailUser>
-//
-//    @GET("users/{username}/{option}")
-//    fun getFollowInfo(
-//        @Header("Authorization") token: String,
-//        @Path("username") username: String,
-//        @Path("option") option: String
-//    ):Call<List<User>>
-//}

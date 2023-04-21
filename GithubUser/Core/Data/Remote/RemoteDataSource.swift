@@ -29,38 +29,28 @@ extension RemoteDataSource: RemoteDataSourceProtocol {
     
     
     func getListSearchUser(query: String) -> RxSwift.Observable<[UserDetailResponse]> {
-        
-//        print("called 1")
-        
         return Observable<[UserDetailResponse]>.create { observer in
             self.getSearchUser(query: query).subscribe { userPageResponse in
                 var userObservables: [Observable<UserDetailResponse>] = []
                 
-//                print("called 2")
-                
                 for userItem in userPageResponse {
                     userObservables.append(self.getDetailUser(username: userItem.login))
-                    
-//                    print(userItem.login)
                 }
                 
                 Observable.zip(userObservables)
                     .subscribe { detailResponses in
-//                        print("called 4")
-//                        print(detailResponses)
                         observer.onNext(detailResponses)
-                    } onError: { error in
-//                        print(error.localizedDescription)
+                    } onError: { _ in
+                        observer.onError(URLError.invalidResponse)
                     } onCompleted: {
-//                        print("on complete inside")
                         observer.onCompleted()
                     }.disposed(by: self.disposeBag)
                 
                 
-            } onError: { error in
-//                print("on error outside")
+            } onError: { _ in
+                observer.onError(URLError.invalidResponse)
             } onCompleted: {
-//                print("on complete outside")
+                observer.onCompleted()
             }.disposed(by: self.disposeBag)
             
             return Disposables.create()

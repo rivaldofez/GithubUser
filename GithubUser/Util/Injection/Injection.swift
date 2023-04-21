@@ -10,12 +10,12 @@ import RealmSwift
 
 final class Injection: NSObject {
     private func provideRepository() -> UserRepositoryProtocol {
-      let realm = try? Realm()
-
-      let locale: LocaleDataSource = LocaleDataSource.sharedInstance(realm)
-      let remote: RemoteDataSource = RemoteDataSource.sharedInstance
-
-      return UserRepository.sharedInstance(locale, remote)
+        let realm = try? Realm()
+        
+        let locale: LocaleDataSource = LocaleDataSource.sharedInstance(realm)
+        let remote: RemoteDataSource = RemoteDataSource.sharedInstance
+        
+        return UserRepository.sharedInstance(locale, remote)
     }
     
     func provideHomeViewModel() -> HomeViewModelProtocol {

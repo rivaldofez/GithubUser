@@ -22,25 +22,8 @@ class HomeViewController: UIViewController, HomeViewProtocol {
     
     private var users: [User] = []
     
-    
-    func updateSearchUserList(with users: [User]) {
-        DispatchQueue.main.async {
-            self.users.removeAll()
-            self.users.append(contentsOf: users)
-            self.userCollectionView.reloadData()
-        }
-    }
-    
-    func updateSearchUserList(with error: String) {
-        self.users.removeAll()
-    }
-    
-    func isLoading(with state: Bool) {
-        print(state)
-    }
-    
     private let disposeBag = DisposeBag()
-
+    
     private let searchController: UISearchController = {
         let searchController = UISearchController()
         searchController.hidesNavigationBarDuringPresentation = true
@@ -53,7 +36,7 @@ class HomeViewController: UIViewController, HomeViewProtocol {
     }()
     
     private lazy var userCollectionView: UICollectionView = {
-      
+        
         let layout = UICollectionViewFlowLayout()
         
         layout.scrollDirection = .vertical
@@ -74,11 +57,9 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         return collectionView
     }()
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         navigationController?.navigationBar.prefersLargeTitles = true
         title = "Github User"
         navigationController?.navigationBar.tintColor = .label
@@ -95,6 +76,22 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         configureConstraints()
         
         viewModel?.getListSearchUser(query: "rivaldo")
+    }
+    
+    func updateSearchUserList(with users: [User]) {
+        DispatchQueue.main.async {
+            self.users.removeAll()
+            self.users.append(contentsOf: users)
+            self.userCollectionView.reloadData()
+        }
+    }
+    
+    func updateSearchUserList(with error: String) {
+        self.users.removeAll()
+    }
+    
+    func isLoading(with state: Bool) {
+        print(state)
     }
     
     private func configureConstraints(){

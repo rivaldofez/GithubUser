@@ -24,25 +24,6 @@ class DetailUserViewController: UIViewController, DetailUserViewProtocol {
     
     private var repos: [Repository] = []
     
-    func updateListRepo(with repos: [Repository]) {
-        DispatchQueue.main.async {
-            self.repos.removeAll()
-            self.repos.append(contentsOf: repos)
-            self.repositoryTableView.reloadData()
-        }
-        
-        print(repos)
-    }
-    
-    func updateListRepo(with error: String) {
-        print(error)
-    }
-    
-    func isLoading(with state: Bool) {
-        print(state)
-    }
-    
-    
     private let userAvatarImageView: UIImageView = {
         let imageview = UIImageView()
         imageview.translatesAutoresizingMaskIntoConstraints = false
@@ -92,7 +73,7 @@ class DetailUserViewController: UIViewController, DetailUserViewProtocol {
     }()
     
     private let regionLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.text = "Bandar Lampung, Indonesia"
         label.translatesAutoresizingMaskIntoConstraints = false
         
@@ -101,25 +82,25 @@ class DetailUserViewController: UIViewController, DetailUserViewProtocol {
     
     private let followersLabel: UILabel = {
         let label = UILabel()
-         label.text = " 180 Followers"
-         label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = " 180 Followers"
+        label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
     }()
     
     private let followingLabel: UILabel = {
         let label = UILabel()
-         label.text = "200 Following"
-         label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "200 Following"
+        label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
     }()
-
+    
     
     private let emailLabel: UILabel = {
         let label = UILabel()
-         label.text = "rivaldofez@gmail.com"
-         label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "rivaldofez@gmail.com"
+        label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
     }()
@@ -173,11 +154,9 @@ class DetailUserViewController: UIViewController, DetailUserViewProtocol {
         return imageview
     }()
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         view.backgroundColor = .systemBackground
         
         view.addSubview(userAvatarImageView)
@@ -203,6 +182,24 @@ class DetailUserViewController: UIViewController, DetailUserViewProtocol {
         repositoryTableView.delegate = self
         repositoryTableView.dataSource = self
         
+    }
+    
+    func updateListRepo(with repos: [Repository]) {
+        DispatchQueue.main.async {
+            self.repos.removeAll()
+            self.repos.append(contentsOf: repos)
+            self.repositoryTableView.reloadData()
+        }
+        
+        print(repos)
+    }
+    
+    func updateListRepo(with error: String) {
+        print(error)
+    }
+    
+    func isLoading(with state: Bool) {
+        print(state)
     }
     
     func configure(with user: User){
@@ -264,7 +261,7 @@ class DetailUserViewController: UIViewController, DetailUserViewProtocol {
             followingLabel.leadingAnchor.constraint(equalTo: followingIcon.trailingAnchor, constant: 4),
             followingLabel.topAnchor.constraint(equalTo: followingIcon.topAnchor),
             followingLabel.bottomAnchor.constraint(equalTo: followingIcon.bottomAnchor)
-        
+            
         ]
         
         let pinIconConstrains = [

@@ -36,7 +36,7 @@ struct UserDetailResponse: Codable {
     let privateGists, totalPrivateRepos, ownedPrivateRepos, diskUsage: Int?
     let collaborators: Int?
     let twoFactorAuthentication: Bool?
-
+    
     enum CodingKeys: String, CodingKey {
         case login, id
         case nodeID = "node_id"

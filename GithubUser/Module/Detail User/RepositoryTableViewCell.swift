@@ -10,7 +10,7 @@ import UIKit
 class RepositoryTableViewCell: UITableViewCell {
     
     static let identifier = "RepositoryTableViewCell"
-
+    
     private let userAvatarImageView: UIImageView = {
         let imageview = UIImageView()
         imageview.translatesAutoresizingMaskIntoConstraints = false
@@ -42,16 +42,16 @@ class RepositoryTableViewCell: UITableViewCell {
     
     private let starLabel: UILabel = {
         let label = UILabel()
-         label.text = "20"
-         label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "20"
+        label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
     }()
     
     private let lastUpdatedLabel: UILabel = {
         let label = UILabel()
-         label.text = "Updated 2 months ago"
-         label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Updated 2 months ago"
+        label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
     }()
