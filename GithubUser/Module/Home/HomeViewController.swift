@@ -6,8 +6,12 @@
 //
 
 import UIKit
+import RxSwift
 
 class HomeViewController: UIViewController {
+    
+    private var viewModel: HomeViewModel = Injection.init().provideHomeViewModel()
+    private let disposeBag = DisposeBag()
 
     private let searchController: UISearchController = {
         let searchController = UISearchController()
@@ -54,6 +58,16 @@ class HomeViewController: UIViewController {
         
         
         configureConstraints()
+        
+        
+        viewModel.getListSearchUser(query: "rivaldo")
+            .observe(on: MainScheduler.instance).subscribe { results in
+                print(results)
+            } onError: { error  in
+                print(error.localizedDescription)
+            } onCompleted: {
+                print("completed")
+            }.disposed(by: disposeBag)
     }
     
     private func configureConstraints(){

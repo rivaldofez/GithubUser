@@ -28,6 +28,7 @@
 		7ED92E5529F1D59100690195 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED92E5429F1D59100690195 /* HomeViewController.swift */; };
 		7ED92E5729F1D82100690195 /* UserCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED92E5629F1D82100690195 /* UserCollectionViewCell.swift */; };
 		7ED92E5A29F218A400690195 /* Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED92E5929F218A400690195 /* Injection.swift */; };
+		7ED92E5C29F218FC00690195 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED92E5B29F218FC00690195 /* HomeViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +56,7 @@
 		7ED92E5429F1D59100690195 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		7ED92E5629F1D82100690195 /* UserCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollectionViewCell.swift; sourceTree = "<group>"; };
 		7ED92E5929F218A400690195 /* Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injection.swift; sourceTree = "<group>"; };
+		7ED92E5B29F218FC00690195 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		D998DBE652EF07438DD222E6 /* Pods-GithubUser.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GithubUser.release.xcconfig"; path = "Target Support Files/Pods-GithubUser/Pods-GithubUser.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -224,6 +226,7 @@
 			children = (
 				7ED92E5429F1D59100690195 /* HomeViewController.swift */,
 				7ED92E5629F1D82100690195 /* UserCollectionViewCell.swift */,
+				7ED92E5B29F218FC00690195 /* HomeViewModel.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -359,6 +362,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7ED92E5C29F218FC00690195 /* HomeViewModel.swift in Sources */,
 				7E6D707B29F194100043D2B0 /* UserRepository.swift in Sources */,
 				7E6D707529F17F110043D2B0 /* LocalDataSource.swift in Sources */,
 				7E6D706929F15A410043D2B0 /* UserListResponse.swift in Sources */,
