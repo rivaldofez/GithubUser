@@ -24,6 +24,7 @@ enum Endpoints {
         case following(username: String)
         case follower(username: String)
         case detailUser(username: String)
+        case reposUser(username: String)
         
         var url: String {
             switch self {
@@ -35,6 +36,8 @@ enum Endpoints {
                 return "\(API.baseURL)users/\(username)/followers"
             case .following(let username):
                 return "\(API.baseURL)users/\(username)/following"
+            case .reposUser(username: let username):
+                return "\(API.baseURL)users/\(username)/repos"
             }
         }
     }

@@ -123,10 +123,6 @@ class RepositoryTableViewCell: UITableViewCell {
         NSLayoutConstraint.activate(lastUpdatedLabelConstraints)
     }
     
-    
-
-    
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

@@ -14,11 +14,9 @@ protocol RemoteDataSourceProtocol: AnyObject {
     
     func getDetailUser(username: String) -> Observable<UserDetailResponse>
     
-    func getFollowingUser(username: String) -> Observable<[UserResponse]>
-    
-    func getFollowerUser(username: String) -> Observable<[UserResponse]>
-    
     func getListSearchUser(query: String) -> Observable<[UserDetailResponse]>
+    
+    func getListRepoUser(username: String) -> Observable<[RepositoryResponse]>
 }
 
 final class RemoteDataSource: NSObject {
@@ -28,6 +26,8 @@ final class RemoteDataSource: NSObject {
 }
 
 extension RemoteDataSource: RemoteDataSourceProtocol {
+    
+    
     func getListSearchUser(query: String) -> RxSwift.Observable<[UserDetailResponse]> {
         
 //        print("called 1")
@@ -97,6 +97,25 @@ extension RemoteDataSource: RemoteDataSourceProtocol {
         }
     }
     
+    func getListRepoUser(username: String) -> RxSwift.Observable<[RepositoryResponse]> {
+        return Observable<[RepositoryResponse]>.create { observer in
+            if let url = URL(string: Endpoints.Gets.reposUser(username: username).url){
+                self.requestGet(url: url)
+                    .responseDecodable(of: [RepositoryResponse].self) { response in
+                        switch (response.result) {
+                        case .success(let value) :
+                            observer.onNext(value)
+                            observer.onCompleted()
+                            
+                        case .failure:
+                            observer.onError(URLError.invalidResponse)
+                        }
+                    }
+            }
+            return Disposables.create()
+        }
+    }
+    
     func getDetailUser(username: String) -> RxSwift.Observable<UserDetailResponse> {
         return Observable<UserDetailResponse>.create { observer in
             if let url = URL(string: Endpoints.Gets.detailUser(username: username).url) {
@@ -117,52 +136,8 @@ extension RemoteDataSource: RemoteDataSourceProtocol {
                         }
                     }
             }
-            
             return Disposables.create()
         }
     }
-    
-    func getFollowingUser(username: String) -> RxSwift.Observable<[UserResponse]> {
-        return Observable<[UserResponse]>.create { observer in
-            if let url = URL(string: Endpoints.Gets.following(username: username).url){
-                self.requestGet(url: url)
-                    .responseDecodable(of: [UserResponse].self) { response in
-                        
-                        switch (response.result) {
-                        case .success(let value):
-                            observer.onNext(value)
-                            observer.onCompleted()
-                            
-                        case .failure:
-                            observer.onError(URLError.invalidResponse)
-                        }
-                    }
-            }
-            
-            return Disposables.create()
-        }
-    }
-    
-    func getFollowerUser(username: String) -> RxSwift.Observable<[UserResponse]> {
-        return Observable<[UserResponse]>.create { observer in
-            if let url = URL(string: Endpoints.Gets.follower(username: username).url){
-                self.requestGet(url: url)
-                    .responseDecodable(of: [UserResponse].self) { response in
-                        
-                        switch (response.result) {
-                        case .success(let value):
-                            observer.onNext(value)
-                            observer.onCompleted()
-                            
-                        case .failure:
-                            observer.onError(URLError.invalidResponse)
-                        }
-                    }
-            }
-            
-            return Disposables.create()
-        }
-    }
-    
     
 }

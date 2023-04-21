@@ -31,6 +31,7 @@
 		7ED92E5C29F218FC00690195 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED92E5B29F218FC00690195 /* HomeViewModel.swift */; };
 		7ED92E5F29F22A1300690195 /* DetailUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED92E5E29F22A1300690195 /* DetailUserViewController.swift */; };
 		7ED92E6129F235F900690195 /* RepositoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED92E6029F235F900690195 /* RepositoryTableViewCell.swift */; };
+		7ED92E6329F23F3200690195 /* RepositoryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED92E6229F23F3200690195 /* RepositoryResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +62,7 @@
 		7ED92E5B29F218FC00690195 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		7ED92E5E29F22A1300690195 /* DetailUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUserViewController.swift; sourceTree = "<group>"; };
 		7ED92E6029F235F900690195 /* RepositoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryTableViewCell.swift; sourceTree = "<group>"; };
+		7ED92E6229F23F3200690195 /* RepositoryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryResponse.swift; sourceTree = "<group>"; };
 		D998DBE652EF07438DD222E6 /* Pods-GithubUser.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GithubUser.release.xcconfig"; path = "Target Support Files/Pods-GithubUser/Pods-GithubUser.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -170,6 +172,7 @@
 			children = (
 				7E6D706829F15A410043D2B0 /* UserListResponse.swift */,
 				7E6D706A29F15BB40043D2B0 /* UserDetailResponse.swift */,
+				7ED92E6229F23F3200690195 /* RepositoryResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -378,6 +381,7 @@
 			files = (
 				7ED92E5C29F218FC00690195 /* HomeViewModel.swift in Sources */,
 				7E6D707B29F194100043D2B0 /* UserRepository.swift in Sources */,
+				7ED92E6329F23F3200690195 /* RepositoryResponse.swift in Sources */,
 				7E6D707529F17F110043D2B0 /* LocalDataSource.swift in Sources */,
 				7E6D706929F15A410043D2B0 /* UserListResponse.swift in Sources */,
 				7E6D706D29F15EFB0043D2B0 /* RemoteDataSource.swift in Sources */,
