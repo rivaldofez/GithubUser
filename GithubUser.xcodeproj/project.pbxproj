@@ -27,6 +27,7 @@
 		7E6D708229F195000043D2B0 /* UserMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6D708129F195000043D2B0 /* UserMapper.swift */; };
 		7ED92E5529F1D59100690195 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED92E5429F1D59100690195 /* HomeViewController.swift */; };
 		7ED92E5729F1D82100690195 /* UserCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED92E5629F1D82100690195 /* UserCollectionViewCell.swift */; };
+		7ED92E5A29F218A400690195 /* Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED92E5929F218A400690195 /* Injection.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,7 @@
 		7E6D708129F195000043D2B0 /* UserMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMapper.swift; sourceTree = "<group>"; };
 		7ED92E5429F1D59100690195 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		7ED92E5629F1D82100690195 /* UserCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollectionViewCell.swift; sourceTree = "<group>"; };
+		7ED92E5929F218A400690195 /* Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injection.swift; sourceTree = "<group>"; };
 		D998DBE652EF07438DD222E6 /* Pods-GithubUser.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GithubUser.release.xcconfig"; path = "Target Support Files/Pods-GithubUser/Pods-GithubUser.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -141,6 +143,7 @@
 		7E6D706129F12DC90043D2B0 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				7ED92E5829F2189200690195 /* Injection */,
 				7E6D708029F194F10043D2B0 /* Mapper */,
 				7E6D706229F12DE30043D2B0 /* Network */,
 				7E6D706E29F174030043D2B0 /* CustomError+Extension.swift */,
@@ -223,6 +226,14 @@
 				7ED92E5629F1D82100690195 /* UserCollectionViewCell.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		7ED92E5829F2189200690195 /* Injection */ = {
+			isa = PBXGroup;
+			children = (
+				7ED92E5929F218A400690195 /* Injection.swift */,
+			);
+			path = Injection;
 			sourceTree = "<group>";
 		};
 		F8B3185532DF63EDD673D979 /* Pods */ = {
@@ -363,6 +374,7 @@
 				7ED92E5529F1D59100690195 /* HomeViewController.swift in Sources */,
 				7E6D704929F11A250043D2B0 /* AppDelegate.swift in Sources */,
 				7E6D706429F12DF50043D2B0 /* ApiCall.swift in Sources */,
+				7ED92E5A29F218A400690195 /* Injection.swift in Sources */,
 				7E6D707929F18C490043D2B0 /* SearchDataEntity.swift in Sources */,
 				7E6D704B29F11A250043D2B0 /* SceneDelegate.swift in Sources */,
 			);
