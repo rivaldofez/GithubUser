@@ -62,10 +62,7 @@ extension RemoteDataSource: RemoteDataSourceProtocol {
     
     func getSearchUser(query: String) -> RxSwift.Observable<[UserResponse]> {
         return Observable<[UserResponse]>.create { observer in
-            let initUrl = query.isEmpty ? Endpoints.Gets.defaultList.url :
-            Endpoints.Gets.searchUser(query: query).url
-            
-            if let url = URL(string: initUrl){
+            if let url = URL(string: Endpoints.Gets.searchUser(query: query).url){
                 self.requestGet(url: url)
                     .responseDecodable(of: UserListResponse.self) { response in
                         

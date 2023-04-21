@@ -57,7 +57,7 @@ class DetailUserViewController: UIViewController, DetailUserViewProtocol {
     private let usernameLabel: UILabel = {
         let label = UILabel()
         label.text = "rivaldofez"
-        label.font = .systemFont(ofSize: 14, weight: .regular)
+        label.font = .systemFont(ofSize: 16, weight: .regular)
         label.textColor = .label
         label.translatesAutoresizingMaskIntoConstraints = false
         
@@ -67,6 +67,8 @@ class DetailUserViewController: UIViewController, DetailUserViewProtocol {
     private let bioLabel: UILabel = {
         let label = UILabel()
         label.text = "Lorem ipsum dolor sit amet "
+        label.font = .systemFont(ofSize: 16, weight: .regular)
+        label.textColor = .label
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
@@ -75,6 +77,8 @@ class DetailUserViewController: UIViewController, DetailUserViewProtocol {
     private let regionLabel: UILabel = {
         let label = UILabel()
         label.text = "Bandar Lampung, Indonesia"
+        label.font = .systemFont(ofSize: 16, weight: .regular)
+        label.textColor = .label
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
@@ -83,6 +87,8 @@ class DetailUserViewController: UIViewController, DetailUserViewProtocol {
     private let followersLabel: UILabel = {
         let label = UILabel()
         label.text = " 180 Followers"
+        label.font = .systemFont(ofSize: 16, weight: .regular)
+        label.textColor = .label
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
@@ -91,6 +97,8 @@ class DetailUserViewController: UIViewController, DetailUserViewProtocol {
     private let followingLabel: UILabel = {
         let label = UILabel()
         label.text = "200 Following"
+        label.font = .systemFont(ofSize: 16, weight: .regular)
+        label.textColor = .label
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
@@ -100,6 +108,8 @@ class DetailUserViewController: UIViewController, DetailUserViewProtocol {
     private let emailLabel: UILabel = {
         let label = UILabel()
         label.text = "rivaldofez@gmail.com"
+        label.font = .systemFont(ofSize: 16, weight: .regular)
+        label.textColor = .label
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
@@ -154,11 +164,30 @@ class DetailUserViewController: UIViewController, DetailUserViewProtocol {
         return imageview
     }()
     
+    private let errorMessageLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 14, weight: .bold)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        label.textColor = .label
+        return label
+    }()
+    
+    private let spinnerLoading: UIActivityIndicatorView = {
+        let spinner = UIActivityIndicatorView()
+        spinner.translatesAutoresizingMaskIntoConstraints = false
+        
+        return spinner
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .systemBackground
         
+        view.addSubview(spinnerLoading)
+        view.addSubview(errorMessageLabel)
         view.addSubview(userAvatarImageView)
         view.addSubview(nameLabel)
         view.addSubview(usernameLabel)
@@ -178,10 +207,20 @@ class DetailUserViewController: UIViewController, DetailUserViewProtocol {
         navigationController?.navigationBar.tintColor = .label
         
         configureConstraints()
+        setError(isError: false)
         
         repositoryTableView.delegate = self
         repositoryTableView.dataSource = self
         
+    }
+    
+    
+    func setError(isError: Bool, message: String = ""){
+        errorMessageLabel.isHidden = !isError
+        errorMessageLabel.text = message
+        
+        repositoryTableView.isHidden = isError
+        spinnerLoading.isHidden = isError
     }
     
     func updateListRepo(with repos: [Repository]) {
@@ -195,11 +234,15 @@ class DetailUserViewController: UIViewController, DetailUserViewProtocol {
     }
     
     func updateListRepo(with error: String) {
-        print(error)
+        setError(isError: true, message: error)
     }
     
     func isLoading(with state: Bool) {
-        print(state)
+        spinnerLoading.isHidden = !state
+        errorMessageLabel.isHidden = state
+        repositoryTableView.isHidden = state
+        
+        state ? spinnerLoading.startAnimating() : spinnerLoading.stopAnimating()
     }
     
     func configure(with user: User){
@@ -291,9 +334,24 @@ class DetailUserViewController: UIViewController, DetailUserViewProtocol {
             repositoryTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             repositoryTableView.topAnchor.constraint(equalTo: emailIcon.bottomAnchor, constant: 16),
             repositoryTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-            
         ]
         
+        let errorMessageLabelConstraints = [
+            errorMessageLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            errorMessageLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            errorMessageLabel.topAnchor.constraint(equalTo: emailIcon.bottomAnchor, constant: 16),
+            errorMessageLabel.bottomAnchor.constraint(lessThanOrEqualTo: view.bottomAnchor)
+        ]
+        
+        let spinnerLoadingConstraints = [
+            spinnerLoading.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            spinnerLoading.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            spinnerLoading.topAnchor.constraint(equalTo: emailIcon.bottomAnchor, constant: 16),
+            spinnerLoading.bottomAnchor.constraint(lessThanOrEqualTo: view.bottomAnchor)
+        ]
+        
+        NSLayoutConstraint.activate(errorMessageLabelConstraints)
+        NSLayoutConstraint.activate(spinnerLoadingConstraints)
         NSLayoutConstraint.activate(userAvatarImageViewConstraints)
         NSLayoutConstraint.activate(nameLabelConstraints)
         NSLayoutConstraint.activate(usernamelabelConstraints)
