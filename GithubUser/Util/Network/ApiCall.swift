@@ -9,7 +9,7 @@ import Foundation
 
 struct API {
     static let baseURL = "https://api.github.com/"
-    static let token = "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"
+    static let token = "FILL YOUR TOKEN"
 }
 
 protocol Endpoint {
