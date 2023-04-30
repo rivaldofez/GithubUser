@@ -68,9 +68,8 @@ This apps built with
 * [UIKit](https://developer.apple.com/documentation/uikit)
 * [RxSwift](https://github.com/ReactiveX/RxSwift)
 * [Alamofire](https://github.com/Alamofire/Alamofire)
-* VIPER Architecture Pattern
+* MVVM Architecture Pattern
 * Dependency Injection
-* Repository Pattern
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
